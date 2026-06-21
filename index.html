@@ -8,23 +8,66 @@
 </head>
 <body>
 
-  <div class="card">
-    <div class="pet-photo">🐶</div>
+  <main class="container">
+    <section class="form-card">
+      <h1>🐾 Crear carnet digital</h1>
 
-    <h1>Rocky</h1>
-    <p>Carnet digital de mascota</p>
+      <form id="petForm">
+        <h2>Datos del propietario</h2>
+        <input id="ownerName" placeholder="Nombre propietario">
+        <input id="ownerRut" placeholder="RUT propietario">
+        <input id="ownerAddress" placeholder="Dirección">
+        <input id="ownerCity" placeholder="Ciudad">
+        <input id="ownerPhone" placeholder="Teléfono">
 
-    <div class="info">
-      <p><strong>Raza:</strong> Labrador</p>
-      <p><strong>Peso:</strong> 28 kg</p>
-      <p><strong>Microchip:</strong> Pendiente</p>
-      <p><strong>Estado:</strong> Activo</p>
-      <p><strong>Vacuna antirrábica:</strong> Vigente</p>
-      <p><strong>Vencimiento:</strong> 15/07/2026</p>
-    </div>
+        <h2>Datos de la mascota</h2>
+        <input id="petPhoto" type="file" accept="image/*">
+        <input id="petName" placeholder="Nombre de mascota">
+        <input id="petSex" placeholder="Sexo">
+        <input id="petSpecies" placeholder="Especie">
+        <input id="petColor" placeholder="Color">
+        <input id="petBreed" placeholder="Raza">
+        <input id="petTattoo" placeholder="Tatuaje">
+        <input id="petAge" placeholder="Edad">
+        <input id="petSizeWeight" placeholder="Tamaño / Peso">
 
-    <button>Exportar PDF</button>
-  </div>
+        <h2>Vacunación</h2>
+        <input id="vaccines" placeholder="Vacunas">
+        <input id="lab" placeholder="Laboratorio fabricante">
+        <input id="importer" placeholder="Importador">
+        <input id="vaccinationDate" type="date">
+        <input id="serie" placeholder="Serie N°">
+        <input id="nextVaccinationDate" type="date">
 
+        <h2>Médico veterinario</h2>
+        <input id="vetName" placeholder="Nombre médico veterinario">
+        <input id="vetRun" placeholder="RUN N°">
+        <input id="vetAddress" placeholder="Dirección">
+        <input id="vetCity" placeholder="Ciudad">
+        <input id="vetPhone" placeholder="Teléfono">
+
+        <h2>Certificado</h2>
+        <input id="certificatePhoto" type="file" accept="image/*">
+
+        <button type="submit">Generar carnet</button>
+      </form>
+    </section>
+
+    <section class="card" id="carnet">
+      <div class="pet-photo" id="petPhotoPreview">🐶</div>
+      <h1 id="showPetName">Nombre mascota</h1>
+      <p>Carnet digital de mascota</p>
+
+      <div class="info" id="previewInfo"></div>
+
+      <h2>Certificado de vacunación</h2>
+      <img id="certificatePreview" class="certificate" alt="Certificado">
+
+      <button onclick="exportPDF()">Exportar PDF</button>
+    </section>
+  </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
