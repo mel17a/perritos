@@ -175,35 +175,5 @@ function exportPDF() {
     return;
   }
 
-  element.classList.add("pdf-export-mode");
-
-  const options = {
-    margin: 0,
-    filename: "carnet-mascota.pdf",
-    image: { type: "jpeg", quality: 0.98 },
-    html2canvas: {
-      scale: 2,
-      useCORS: true,
-      scrollX: 0,
-      scrollY: 0,
-      windowWidth: 1100,
-      windowHeight: 780
-    },
-    jsPDF: {
-      unit: "mm",
-      format: "a4",
-      orientation: "landscape"
-    },
-    pagebreak: {
-      mode: ["avoid-all", "css", "legacy"]
-    }
-  };
-
-  html2pdf()
-    .set(options)
-    .from(element)
-    .save()
-    .then(function() {
-      element.classList.remove("pdf-export-mode");
-    });
+  window.print();
 }
