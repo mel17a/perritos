@@ -177,14 +177,14 @@ function renderPreview(vaccinesHtml) {
 }
 
 function exportPDF() {
-  const element = document.getElementById("carnet");
+  const element = document.getElementById("previewInfo");
 
   const options = {
-    margin: 8,
+    margin: 6,
     filename: "carnet-mascota.pdf",
     image: { type: "jpeg", quality: 0.98 },
     html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+    jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
   };
 
   html2pdf().set(options).from(element).save();
