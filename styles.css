@@ -15,7 +15,6 @@
 
 .theme-female {
   --bg: #fff4fb;
-  --card: #ffffff;
   --primary: #cb408c;
   --secondary: #e360a8;
   --accent: #fdc6e4;
@@ -26,7 +25,6 @@
 
 .theme-male {
   --bg: #eef6ff;
-  --card: #ffffff;
   --primary: #244e7a;
   --secondary: #6095cc;
   --accent: #c9e1fb;
@@ -37,7 +35,6 @@
 
 .theme-fashion {
   --bg: #f6f3ed;
-  --card: #ffffff;
   --primary: #a93c28;
   --secondary: #0fa579;
   --accent: #fedb7b;
@@ -57,24 +54,24 @@ body {
   font-family: Arial, sans-serif;
   background: var(--bg);
   color: var(--text);
-  padding: clamp(10px, 2vw, 24px);
+  padding: clamp(14px, 2.5vw, 32px);
 }
 
 .container {
   width: 100%;
-  max-width: 1400px;
+  max-width: 1600px;
   margin: auto;
   display: grid;
-  grid-template-columns: minmax(320px, 1.05fr) minmax(320px, 0.95fr);
-  gap: clamp(14px, 2vw, 28px);
+  grid-template-columns: minmax(520px, 1fr) minmax(420px, 0.9fr);
+  gap: clamp(20px, 3vw, 42px);
   align-items: start;
 }
 
 .form-card,
 .card {
   background: var(--card);
-  border-radius: 22px;
-  padding: clamp(16px, 2vw, 28px);
+  border-radius: 24px;
+  padding: clamp(22px, 2.5vw, 36px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
   border: 1px solid var(--border);
 }
@@ -82,31 +79,31 @@ body {
 .theme-buttons {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-bottom: 16px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
 
 .theme-buttons button {
   margin: 0;
-  padding: 10px;
-  font-size: 14px;
+  padding: 12px;
+  font-size: 15px;
   background: var(--soft);
   color: var(--primary);
   border: 1px solid var(--border);
 }
 
 h1 {
-  font-size: clamp(28px, 4vw, 46px);
-  margin: 8px 0 18px;
+  font-size: clamp(30px, 4vw, 48px);
+  margin: 8px 0 22px;
   color: var(--primary);
 }
 
 h2 {
-  font-size: clamp(22px, 3vw, 32px);
-  margin: 28px 0 12px;
+  font-size: clamp(22px, 3vw, 30px);
+  margin: 0 0 16px;
   color: var(--primary);
   border-bottom: 2px solid var(--accent);
-  padding-bottom: 8px;
+  padding-bottom: 10px;
 }
 
 h3 {
@@ -114,12 +111,20 @@ h3 {
   margin: 22px 0 10px;
 }
 
+.form-section {
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: clamp(16px, 2vw, 24px);
+  margin-top: 20px;
+  background: var(--soft);
+}
+
 input {
   width: 100%;
-  padding: 13px 14px;
-  margin: 6px 0;
+  padding: 14px 16px;
+  margin: 8px 0;
   border: 1px solid var(--border);
-  border-radius: 12px;
+  border-radius: 14px;
   font-size: 16px;
   background: #fff;
 }
@@ -142,7 +147,7 @@ button {
   margin-top: 16px;
   padding: 14px 18px;
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
   font-size: 16px;
@@ -157,20 +162,20 @@ button:hover {
 .card {
   text-align: center;
   position: sticky;
-  top: 16px;
+  top: 20px;
 }
 
 .pet-photo {
-  width: clamp(110px, 18vw, 160px);
-  height: clamp(110px, 18vw, 160px);
+  width: clamp(120px, 16vw, 170px);
+  height: clamp(120px, 16vw, 170px);
   border-radius: 50%;
   background: var(--soft);
   border: 5px solid var(--accent);
-  margin: 0 auto 12px;
+  margin: 0 auto 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(42px, 7vw, 70px);
+  font-size: clamp(46px, 7vw, 72px);
   overflow: hidden;
 }
 
@@ -196,25 +201,25 @@ button:hover {
 
 .info p {
   border-bottom: 1px solid var(--border);
-  padding: 9px 0;
+  padding: 10px 0;
   margin: 0;
   font-size: 15px;
-  line-height: 1.35;
+  line-height: 1.4;
   word-break: break-word;
 }
 
 .vaccine-block {
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 14px;
-  margin-top: 12px;
-  background: var(--soft);
+  border-radius: 18px;
+  padding: clamp(14px, 2vw, 20px);
+  margin-top: 14px;
+  background: rgba(255, 255, 255, 0.55);
 }
 
 .vaccine-preview {
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 12px;
+  border-radius: 16px;
+  padding: 14px;
   margin: 12px 0;
   background: var(--soft);
 }
@@ -244,15 +249,20 @@ button:hover {
   }
 }
 
-@media (max-width: 520px) {
+@media (max-width: 600px) {
   body {
     padding: 8px;
   }
 
   .form-card,
   .card {
-    border-radius: 16px;
+    border-radius: 18px;
     padding: 14px;
+  }
+
+  .form-section {
+    padding: 14px;
+    border-radius: 16px;
   }
 
   .theme-buttons {
@@ -269,7 +279,7 @@ button:hover {
   }
 
   h2 {
-    font-size: 23px;
+    font-size: 22px;
   }
 
   .pet-photo {
@@ -292,6 +302,7 @@ button:hover {
 
   .container {
     display: block;
+    max-width: 100%;
   }
 
   .card {
@@ -299,16 +310,4 @@ button:hover {
     border: none;
     position: static;
   }
-}
-
-.form-section {
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 18px;
-  margin-top: 18px;
-  background: var(--soft);
-}
-
-.form-section h2 {
-  margin-top: 0;
 }
