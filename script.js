@@ -215,7 +215,7 @@ async function exportPDF() {
 
         ctx.drawImage(img, x, y, width, height);
 
-        resolve(canvas.toDataURL("image/jpeg", 0.9));
+        resolve(canvas.toDataURL("image/png"));
       };
 
       img.src = imageData;
@@ -286,7 +286,7 @@ async function exportPDF() {
     doc.setDrawColor(border);
     doc.setLineWidth(2);
     doc.circle(244.5, 57, 21, "S");
-    doc.addImage(petImg, "JPEG", 224.5, 37, 40, 40);
+    doc.addImage(petImg, "PNG", 224.5, 37, 40, 40);
   }
 
   doc.setTextColor(primary);
