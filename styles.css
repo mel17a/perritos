@@ -265,15 +265,12 @@ button:hover {
 }
 
 .certificate {
-  display: block;
   width: 100%;
-  max-height: 140px;
+  max-height: 90px;
   object-fit: cover;
   object-position: center;
-  border: 1px solid var(--border);
   border-radius: 10px;
   margin-top: 8px;
-  background: white;
 }
 
 @media (max-width: 1100px) {
