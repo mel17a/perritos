@@ -181,11 +181,22 @@ function exportPDF() {
   const element = document.getElementById("previewInfo");
 
   const options = {
-    margin: 6,
+    margin: 4,
     filename: "carnet-mascota.pdf",
     image: { type: "jpeg", quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
-    jsPDF: { unit: "mm", format: "a4", orientation: "landscape" }
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      scrollY: 0
+    },
+    jsPDF: {
+      unit: "mm",
+      format: "a4",
+      orientation: "landscape"
+    },
+    pagebreak: {
+      mode: ["avoid-all", "css", "legacy"]
+    }
   };
 
   html2pdf().set(options).from(element).save();
