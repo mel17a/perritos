@@ -8,17 +8,9 @@ const vaccinesContainer = document.getElementById("vaccinesContainer");
 function setTheme(theme) {
   document.body.className = "";
 
-  if (theme === "female") {
-    document.body.classList.add("theme-female");
-  }
-
-  if (theme === "male") {
-    document.body.classList.add("theme-male");
-  }
-
-  if (theme === "fashion") {
-    document.body.classList.add("theme-fashion");
-  }
+  if (theme === "female") document.body.classList.add("theme-female");
+  if (theme === "male") document.body.classList.add("theme-male");
+  if (theme === "fashion") document.body.classList.add("theme-fashion");
 }
 
 function readImage(input, callback) {
@@ -30,11 +22,9 @@ function readImage(input, callback) {
   }
 
   const reader = new FileReader();
-
   reader.onload = function(e) {
     callback(e.target.result);
   };
-
   reader.readAsDataURL(file);
 }
 
@@ -85,8 +75,12 @@ form.addEventListener("submit", function(e) {
     } else {
       petPhotoPreview.innerHTML = "🐶";
     }
-  });
 
+    buildVaccinesPreview();
+  });
+});
+
+function buildVaccinesPreview() {
   const vaccineBlocks = document.querySelectorAll(".vaccine-block");
   const vaccineResults = [];
 
@@ -109,11 +103,7 @@ form.addEventListener("submit", function(e) {
           <p><strong>Fecha vacunación:</strong> ${block.querySelector(".vaccinationDate").value}</p>
           <p><strong>Serie N°:</strong> ${block.querySelector(".serie").value}</p>
           <p><strong>Próxima vacunación:</strong> ${block.querySelector(".nextVaccinationDate").value}</p>
-          ${
-            certSrc
-              ? `<img class="certificate" src="${certSrc}" alt="Certificado vacunación">`
-              : ""
-          }
+          ${certSrc ? `<img class="certificate" src="${certSrc}" alt="Certificado vacunación">` : ""}
         </div>
       `;
 
@@ -124,13 +114,13 @@ form.addEventListener("submit", function(e) {
       }
     });
   });
-});
+}
 
 function renderPreview(vaccinesHtml) {
   previewInfo.innerHTML = `
-    <div class="pdf-layout">
+    <div class="pdf-layout" id="pdfLayout">
 
-      <div class="pdf-box">
+      <div class="pdf-box owner-box">
         <h3>🐾 Datos del propietario</h3>
         <p><strong>Nombre:</strong> ${ownerName.value}</p>
         <p><strong>RUT:</strong> ${ownerRut.value}</p>
@@ -139,7 +129,7 @@ function renderPreview(vaccinesHtml) {
         <p><strong>Teléfono:</strong> ${ownerPhone.value}</p>
       </div>
 
-      <div class="pdf-box">
+      <div class="pdf-box pet-box">
         <h3>🐾 Datos de la mascota</h3>
         <p><strong>Nombre:</strong> ${petName.value}</p>
         <p><strong>Sexo:</strong> ${petSex.value}</p>
@@ -153,18 +143,18 @@ function renderPreview(vaccinesHtml) {
         <p><strong>Tamaño / Peso:</strong> ${petSizeWeight.value}</p>
       </div>
 
-      <div class="pdf-profile pdf-box">
+      <div class="pdf-box profile-box">
         <div class="pdf-photo">${petPhotoPreview.innerHTML}</div>
-        <h2>${petName.value}</h2>
+        <h2>${petName.value || "Mascota"}</h2>
         <p>Carnet digital de mascota</p>
       </div>
 
-      <div class="pdf-box">
+      <div class="pdf-box vaccine-box">
         <h3>🐾 Vacunación</h3>
         ${vaccinesHtml || "<p>No se registraron vacunas.</p>"}
       </div>
 
-      <div class="pdf-box">
+      <div class="pdf-box vet-box">
         <h3>🐾 Médico veterinario</h3>
         <p><strong>Nombre:</strong> ${vetName.value}</p>
         <p><strong>RUN N°:</strong> ${vetRun.value}</p>
@@ -178,7 +168,14 @@ function renderPreview(vaccinesHtml) {
 }
 
 function exportPDF() {
-  const element = document.querySelector(".pdf-layout");
+  const element = document.getElementById("pdfLayout");
+
+  if (!element) {
+    alert("Primero debes generar el carnet.");
+    return;
+  }
+
+  element.classList.add("pdf-export-mode");
 
   const options = {
     margin: 0,
@@ -189,18 +186,24 @@ function exportPDF() {
       useCORS: true,
       scrollX: 0,
       scrollY: 0,
-      windowWidth: 1123,
-      windowHeight: 794
+      windowWidth: 1100,
+      windowHeight: 780
     },
     jsPDF: {
-      unit: "px",
-      format: [1123, 794],
+      unit: "mm",
+      format: "a4",
       orientation: "landscape"
     },
     pagebreak: {
-      mode: ["avoid-all"]
+      mode: ["avoid-all", "css", "legacy"]
     }
   };
 
-  html2pdf().set(options).from(element).save();
+  html2pdf()
+    .set(options)
+    .from(element)
+    .save()
+    .then(function() {
+      element.classList.remove("pdf-export-mode");
+    });
 }
