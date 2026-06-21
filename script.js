@@ -12,6 +12,7 @@ function setTheme(theme) {
 
 function readImage(input, callback) {
   const file = input.files[0];
+
   if (!file) {
     callback("");
     return;
@@ -178,7 +179,10 @@ async function exportPDF() {
 
   function fileToImage(input) {
     const file = input.files[0];
-    if (!file) return Promise.resolve(null);
+
+    if (!file) {
+      return Promise.resolve(null);
+    }
 
     return new Promise(resolve => {
       const reader = new FileReader();
@@ -251,13 +255,11 @@ async function exportPDF() {
   doc.setFillColor("#ffffff");
   doc.rect(0, 0, 297, 210, "F");
 
-  // Título simple, sin contenedor, sin foto
   doc.setTextColor(primary);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(24);
   doc.text("Carnet digital de mascota", 148.5, 18, { align: "center" });
 
-  // Primera fila
   box(8, 28, 88, 75, "Datos del propietario");
   let y = 48;
   y = field("Nombre", ownerName.value, 14, y);
@@ -297,7 +299,6 @@ async function exportPDF() {
   doc.setFontSize(8);
   doc.text("Carnet digital de mascota", 244.5, 94, { align: "center" });
 
-  // Segunda fila
   box(8, 112, 138, 88, "Vacunación");
 
   const vaccineBlocks = document.querySelectorAll(".vaccine-block");
@@ -314,6 +315,7 @@ async function exportPDF() {
     vy = field("Próxima", block.querySelector(".nextVaccinationDate").value, 14, vy);
 
     const certImg = await fileToImage(block.querySelector(".certificatePhoto"));
+
     if (certImg) {
       doc.addImage(certImg, "JPEG", 82, 132, 54, 38);
     }
@@ -328,9 +330,6 @@ async function exportPDF() {
   y = field("Dirección", vetAddress.value, 160, y, 72);
   y = field("Ciudad", vetCity.value, 160, y);
   y = field("Teléfono", vetPhone.value, 160, y);
-
-  doc.save("carnet-mascota.pdf");
-}
 
   doc.save("carnet-mascota.pdf");
 }
