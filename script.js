@@ -161,6 +161,7 @@ function renderPreview(vaccinesHtml) {
     </div>
   `;
 }
+
 async function exportPDF() {
   const { jsPDF } = window.jspdf;
 
@@ -170,9 +171,9 @@ async function exportPDF() {
     format: "a4"
   });
 
-  const primary = "#cb408c";
-  const soft = "#ffeaf6";
-  const border = "#f3b8d9";
+  const primary = getComputedStyle(document.body).getPropertyValue("--primary").trim() || "#cb408c";
+  const soft = getComputedStyle(document.body).getPropertyValue("--soft").trim() || "#ffeaf6";
+  const border = getComputedStyle(document.body).getPropertyValue("--border").trim() || "#f3b8d9";
   const text = "#222222";
 
   function fileToImage(input) {
@@ -193,24 +194,24 @@ async function exportPDF() {
 
     doc.setTextColor(primary);
     doc.setFont("helvetica", "bold");
-    doc.setFontSize(12);
-    doc.text(title.toUpperCase(), x + 6, y + 10);
+    doc.setFontSize(11);
+    doc.text(title.toUpperCase(), x + 5, y + 9);
 
     doc.setDrawColor(border);
-    doc.line(x + 6, y + 14, x + w - 6, y + 14);
+    doc.line(x + 5, y + 12, x + w - 5, y + 12);
   }
 
-  function field(label, value, x, y, maxWidth = 52) {
+  function field(label, value, x, y, maxWidth = 50) {
     doc.setTextColor(text);
-    doc.setFontSize(8.5);
+    doc.setFontSize(8);
     doc.setFont("helvetica", "bold");
     doc.text(`${label}:`, x, y);
 
     doc.setFont("helvetica", "normal");
     const lines = doc.splitTextToSize(value || "-", maxWidth);
-    doc.text(lines, x + 25, y);
+    doc.text(lines, x + 23, y);
 
-    return y + 6 + ((lines.length - 1) * 4);
+    return y + 5 + ((lines.length - 1) * 3.5);
   }
 
   const petImg = await fileToImage(petPhoto);
@@ -218,34 +219,23 @@ async function exportPDF() {
   doc.setFillColor("#ffffff");
   doc.rect(0, 0, 297, 210, "F");
 
-  doc.setFillColor(soft);
-  doc.setDrawColor(border);
-  doc.roundedRect(8, 8, 281, 36, 5, 5, "FD");
-
-  if (petImg) {
-    doc.addImage(petImg, "JPEG", 17, 12, 28, 28);
-  }
-
+  // Título simple, sin contenedor, sin foto
   doc.setTextColor(primary);
   doc.setFont("helvetica", "bold");
-  doc.setFontSize(25);
-  doc.text(petName.value || "Mascota", 55, 25);
+  doc.setFontSize(24);
+  doc.text("Carnet digital de mascota", 148.5, 18, { align: "center" });
 
-  doc.setTextColor(text);
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(10);
-  doc.text("Carnet digital de mascota", 56, 35);
-
-  box(8, 50, 88, 63, "Datos del propietario");
-  let y = 70;
+  // Primera fila
+  box(8, 28, 88, 75, "Datos del propietario");
+  let y = 48;
   y = field("Nombre", ownerName.value, 14, y);
   y = field("RUT", ownerRut.value, 14, y);
   y = field("Dirección", ownerAddress.value, 14, y);
   y = field("Ciudad", ownerCity.value, 14, y);
   y = field("Teléfono", ownerPhone.value, 14, y);
 
-  box(104, 50, 88, 63, "Datos de la mascota");
-  y = 70;
+  box(104, 28, 88, 75, "Datos de la mascota");
+  y = 48;
   y = field("Sexo", petSex.value, 110, y);
   y = field("Especie", petSpecies.value, 110, y);
   y = field("Color", petColor.value, 110, y);
@@ -256,24 +246,31 @@ async function exportPDF() {
   y = field("Edad", petAge.value, 110, y);
   y = field("Peso", petSizeWeight.value, 110, y);
 
-  box(200, 50, 89, 63, "Identificación");
+  box(200, 28, 89, 75, "Identificación");
+
   if (petImg) {
-    doc.addImage(petImg, "JPEG", 226, 57, 36, 36);
+    // Marco circular simulado
+    doc.setDrawColor(border);
+    doc.setLineWidth(2);
+    doc.circle(244.5, 57, 20, "S");
+    doc.addImage(petImg, "JPEG", 224.5, 37, 40, 40);
   }
 
   doc.setTextColor(primary);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(18);
-  doc.text(petName.value || "Mascota", 244, 102, { align: "center" });
+  doc.text(petName.value || "Mascota", 244.5, 86, { align: "center" });
 
   doc.setTextColor(text);
   doc.setFont("helvetica", "normal");
-  doc.setFontSize(9);
-  doc.text("Carnet digital de mascota", 244, 109, { align: "center" });
+  doc.setFontSize(8);
+  doc.text("Carnet digital de mascota", 244.5, 94, { align: "center" });
 
-  box(8, 121, 138, 80, "Vacunación");
+  // Segunda fila
+  box(8, 112, 138, 88, "Vacunación");
+
   const vaccineBlocks = document.querySelectorAll(".vaccine-block");
-  let vy = 141;
+  let vy = 132;
 
   if (vaccineBlocks.length > 0) {
     const block = vaccineBlocks[0];
@@ -287,17 +284,17 @@ async function exportPDF() {
 
     const certImg = await fileToImage(block.querySelector(".certificatePhoto"));
     if (certImg) {
-      doc.addImage(certImg, "JPEG", 82, 141, 54, 36);
+      doc.addImage(certImg, "JPEG", 82, 132, 54, 38);
     }
   } else {
     field("Vacunas", "No se registraron vacunas", 14, vy);
   }
 
-  box(154, 121, 135, 80, "Médico veterinario");
-  y = 141;
-  y = field("Nombre", vetName.value, 160, y, 70);
+  box(154, 112, 135, 88, "Médico veterinario");
+  y = 132;
+  y = field("Nombre", vetName.value, 160, y, 72);
   y = field("RUN N°", vetRun.value, 160, y);
-  y = field("Dirección", vetAddress.value, 160, y, 70);
+  y = field("Dirección", vetAddress.value, 160, y, 72);
   y = field("Ciudad", vetCity.value, 160, y);
   y = field("Teléfono", vetPhone.value, 160, y);
 
