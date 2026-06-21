@@ -3,7 +3,7 @@
 }
 
 :root {
-  --bg: #f4f6f8;
+  --bg: #fff4fb;
   --card: #ffffff;
   --primary: #cb408c;
   --secondary: #e360a8;
@@ -62,7 +62,7 @@ body {
   max-width: 1600px;
   margin: auto;
   display: grid;
-  grid-template-columns: minmax(520px, 1fr) minmax(500px, 1fr);
+  grid-template-columns: minmax(520px, 1fr) minmax(560px, 1fr);
   gap: clamp(20px, 3vw, 42px);
   align-items: start;
 }
@@ -159,21 +159,8 @@ button:hover {
   filter: brightness(0.95);
 }
 
-.card {
-  text-align: center;
-  position: sticky;
-  top: 20px;
-}
-
-.card > .pet-photo,
-.card > #showPetName,
-.card > p {
-  display: none;
-}
-
-.info {
-  text-align: left;
-  margin-top: 0;
+.remove-vaccine {
+  background: #b42318;
 }
 
 .vaccine-block {
@@ -184,15 +171,30 @@ button:hover {
   background: rgba(255, 255, 255, 0.55);
 }
 
-.remove-vaccine {
-  background: #b42318;
+.card {
+  text-align: center;
+  position: sticky;
+  top: 20px;
+}
+
+#carnet > #petPhotoPreview,
+#carnet > #showPetName,
+#carnet > p {
+  display: none !important;
+}
+
+.info {
+  text-align: left;
+  margin-top: 0;
 }
 
 .pdf-layout {
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1.15fr;
+  grid-template-rows: auto auto;
   gap: 14px;
-  background: white;
+  background: transparent;
 }
 
 .pdf-box {
@@ -202,30 +204,33 @@ button:hover {
   background: var(--soft);
   overflow-wrap: break-word;
   word-break: break-word;
+  overflow: hidden;
 }
 
 .pdf-box h3 {
   color: var(--primary);
   border-bottom: 2px solid var(--accent);
   padding-bottom: 8px;
+  margin: 0 0 10px;
+  font-size: 18px;
   text-transform: uppercase;
 }
 
 .pdf-box p {
   border-bottom: none;
-  padding: 4px 0;
+  padding: 3px 0;
   margin: 0;
-  font-size: 14px;
-  line-height: 1.35;
+  font-size: 13px;
+  line-height: 1.3;
 }
 
-.pdf-profile {
+.profile-box {
   text-align: center;
 }
 
-.pdf-profile .pdf-photo {
-  width: 170px;
-  height: 170px;
+.pdf-photo {
+  width: 165px;
+  height: 165px;
   border-radius: 50%;
   border: 8px solid var(--accent);
   overflow: hidden;
@@ -233,35 +238,41 @@ button:hover {
   background: white;
 }
 
-.pdf-profile .pdf-photo img {
+.pdf-photo img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
-.pdf-profile h2 {
-  font-size: clamp(30px, 4vw, 44px);
+.profile-box h2 {
+  font-size: clamp(30px, 4vw, 42px);
   margin: 8px 0;
   color: var(--primary);
   border: none;
 }
 
+.profile-box p {
+  text-align: center;
+}
+
 .vaccine-preview {
   border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 14px;
-  margin: 12px 0;
+  border-radius: 14px;
+  padding: 12px;
   background: rgba(255, 255, 255, 0.55);
+  overflow: hidden;
 }
 
 .certificate {
   display: block;
   width: 100%;
-  max-height: 260px;
-  object-fit: contain;
+  max-height: 140px;
+  object-fit: cover;
+  object-position: center;
   border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-top: 10px;
+  border-radius: 10px;
+  margin-top: 8px;
   background: white;
 }
 
@@ -313,10 +324,52 @@ button:hover {
     font-size: 22px;
   }
 
-  .pdf-profile .pdf-photo {
+  .pdf-photo {
     width: 140px;
     height: 140px;
   }
+}
+
+/* Modo temporal solo para exportar PDF */
+.pdf-export-mode {
+  width: 1080px !important;
+  height: 720px !important;
+  padding: 18px !important;
+  background: white !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1.15fr !important;
+  grid-template-rows: 1fr 1fr !important;
+  gap: 14px !important;
+  overflow: hidden !important;
+}
+
+.pdf-export-mode .pdf-box {
+  padding: 14px !important;
+  overflow: hidden !important;
+}
+
+.pdf-export-mode .pdf-box h3 {
+  font-size: 17px !important;
+  margin-bottom: 8px !important;
+}
+
+.pdf-export-mode .pdf-box p {
+  font-size: 12px !important;
+  line-height: 1.25 !important;
+  padding: 2px 0 !important;
+}
+
+.pdf-export-mode .pdf-photo {
+  width: 155px !important;
+  height: 155px !important;
+}
+
+.pdf-export-mode .profile-box h2 {
+  font-size: 34px !important;
+}
+
+.pdf-export-mode .certificate {
+  max-height: 120px !important;
 }
 
 @media print {
@@ -340,175 +393,5 @@ button:hover {
     box-shadow: none;
     border: none;
     position: static;
-  }
-
-  .pdf-layout {
-    grid-template-columns: 1fr 1fr 1.15fr;
-  }
-}
-
-#carnet > #petPhotoPreview,
-#carnet > #showPetName,
-#carnet > p {
-  display: none !important;
-}
-
-#carnet > #petPhotoPreview,
-#carnet > #showPetName,
-#carnet > p {
-  display: none !important;
-}
-
-.pdf-layout {
-  width: 100%;
-  max-width: 1050px;
-  aspect-ratio: 1.414 / 1;
-  display: grid !important;
-  grid-template-columns: 1fr 1fr 1.1fr;
-  grid-template-rows: 1fr 1fr;
-  gap: 10px;
-  background: white;
-  margin: auto;
-}
-
-.pdf-box {
-  border: 1px solid var(--border) !important;
-  border-radius: 16px !important;
-  padding: 14px !important;
-  background: var(--soft) !important;
-  overflow: hidden;
-  page-break-inside: avoid;
-  break-inside: avoid;
-}
-
-.pdf-box h3 {
-  color: var(--primary);
-  border-bottom: 2px solid var(--accent);
-  padding-bottom: 6px;
-  margin: 0 0 10px;
-  font-size: 18px;
-  text-transform: uppercase;
-}
-
-.pdf-box p {
-  border-bottom: none !important;
-  padding: 3px 0 !important;
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.3;
-}
-
-.pdf-profile {
-  text-align: center;
-}
-
-.pdf-profile .pdf-photo {
-  width: 170px;
-  height: 170px;
-  border-radius: 50%;
-  border: 8px solid var(--accent);
-  overflow: hidden;
-  margin: 0 auto 14px;
-  background: white;
-}
-
-.pdf-profile .pdf-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.pdf-profile h2 {
-  font-size: 38px;
-  margin: 8px 0;
-  color: var(--primary);
-  border: none;
-}
-
-.vaccine-preview {
-  border: 1px solid var(--border) !important;
-  border-radius: 14px !important;
-  padding: 12px !important;
-  background: rgba(255,255,255,0.55) !important;
-  overflow: hidden;
-}
-
-.certificate {
-  display: block;
-  width: 100%;
-  max-height: 150px;
-  object-fit: cover;
-  object-position: center;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  margin-top: 8px;
-  background: white;
-}
-
-@media (max-width: 1100px) {
-  .pdf-layout {
-    aspect-ratio: auto;
-    grid-template-columns: 1fr;
-    grid-template-rows: auto;
-  }
-}
-
-@media print {
-  .pdf-layout {
-    width: 100%;
-    max-width: 100%;
-    aspect-ratio: 1.414 / 1;
-    grid-template-columns: 1fr 1fr 1.1fr;
-    grid-template-rows: 1fr 1fr;
-  }
-}
-
-.pdf-layout {
-  width: 1123px !important;
-  height: 794px !important;
-  max-width: none !important;
-  aspect-ratio: auto !important;
-  display: grid !important;
-  grid-template-columns: 1fr 1fr 1.1fr !important;
-  grid-template-rows: 1fr 1fr !important;
-  gap: 12px !important;
-  padding: 22px !important;
-  background: white !important;
-  overflow: hidden !important;
-}
-
-.pdf-box {
-  overflow: hidden !important;
-}
-
-.pdf-box h3 {
-  font-size: 20px !important;
-}
-
-.pdf-box p {
-  font-size: 14px !important;
-  line-height: 1.35 !important;
-}
-
-.pdf-profile .pdf-photo {
-  width: 185px !important;
-  height: 185px !important;
-}
-
-.pdf-profile .pdf-photo img {
-  object-fit: cover !important;
-  object-position: center !important;
-}
-
-.certificate {
-  max-height: 170px !important;
-  object-fit: cover !important;
-}
-
-@media (max-width: 1100px) {
-  .pdf-layout {
-    transform: scale(0.45);
-    transform-origin: top left;
   }
 }
