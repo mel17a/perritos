@@ -4,7 +4,7 @@
 
 html, body {
   width: 100%;
-  max-width: 100%;
+  min-height: 100%;
   overflow-x: hidden;
 }
 
@@ -12,63 +12,103 @@ body {
   font-family: Arial, sans-serif;
   background: #f4f6f8;
   margin: 0;
-  padding: 12px;
+  padding: clamp(8px, 2vw, 18px);
 }
 
 .card {
   width: 100%;
-  max-width: min(520px, 100%);
-  margin: 12px auto;
+  max-width: 520px;
+  margin: 0 auto;
   background: white;
   border-radius: 18px;
-  padding: clamp(16px, 4vw, 28px);
+  padding: clamp(14px, 3vw, 24px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   text-align: center;
 }
 
 .pet-photo {
-  width: clamp(110px, 38vw, 180px);
-  height: clamp(110px, 38vw, 180px);
+  width: clamp(80px, 24vw, 150px);
+  height: clamp(80px, 24vw, 150px);
   border-radius: 50%;
   background: #ddd;
-  margin: auto;
+  margin: 0 auto 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(42px, 12vw, 75px);
+  font-size: clamp(34px, 8vw, 64px);
 }
 
 h1 {
-  font-size: clamp(30px, 9vw, 54px);
-  margin: 24px 0 8px;
+  font-size: clamp(28px, 6vw, 44px);
+  margin: 8px 0;
 }
 
 .card > p {
-  font-size: clamp(16px, 4.5vw, 22px);
+  font-size: clamp(15px, 3vw, 20px);
+  margin: 8px 0 16px;
 }
 
 .info {
   text-align: left;
-  margin-top: 20px;
+  margin-top: 10px;
   width: 100%;
 }
 
 .info p {
   border-bottom: 1px solid #eee;
-  padding: 12px 0;
-  font-size: clamp(15px, 4.2vw, 22px);
-  line-height: 1.35;
+  padding: clamp(7px, 1.8vw, 11px) 0;
+  margin: 0;
+  font-size: clamp(14px, 3.2vw, 19px);
+  line-height: 1.25;
   word-break: break-word;
 }
 
 button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 14px 18px;
+  margin-top: 16px;
+  padding: 12px 18px;
   border: none;
   border-radius: 10px;
   background: #1f883d;
   color: white;
-  font-size: clamp(16px, 4vw, 20px);
+  font-size: clamp(15px, 3vw, 18px);
   cursor: pointer;
+}
+
+/* Modo compacto cuando la ventana tiene poca altura */
+@media (max-height: 760px) {
+  body {
+    padding: 6px;
+  }
+
+  .card {
+    padding: 12px 22px;
+  }
+
+  .pet-photo {
+    width: 70px;
+    height: 70px;
+    font-size: 34px;
+    margin-bottom: 8px;
+  }
+
+  h1 {
+    font-size: 30px;
+    margin: 4px 0;
+  }
+
+  .card > p {
+    font-size: 16px;
+    margin: 4px 0 10px;
+  }
+
+  .info p {
+    padding: 6px 0;
+    font-size: 15px;
+  }
+
+  button {
+    margin-top: 10px;
+    padding: 10px 16px;
+    font-size: 15px;
+  }
 }
