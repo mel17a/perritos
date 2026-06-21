@@ -19,57 +19,66 @@
       <h1>🐾 Crear carnet digital</h1>
 
       <form id="petForm">
-        <h2>Datos del propietario</h2>
-        <input id="ownerName" placeholder="Nombre propietario" required minlength="3">
-        <input id="ownerRut" placeholder="RUT propietario" required pattern="^[0-9]{7,8}-[0-9kK]{1}$" title="Formato válido: 12345678-9">
-        <input id="ownerAddress" placeholder="Dirección" required minlength="5">
-        <input id="ownerCity" placeholder="Ciudad" required minlength="3">
-        <input id="ownerPhone" placeholder="Teléfono" required pattern="^\+?[0-9]{8,12}$" title="Ingrese solo números, puede incluir +569">
 
-        <h2>Datos de la mascota</h2>
-        <label for="petPhoto">Cargar foto de perfil</label>
-        <input id="petPhoto" type="file" accept="image/*">
-
-        <input id="petName" placeholder="Nombre de mascota" required minlength="2">
-        <input id="petSex" placeholder="Sexo">
-        <input id="petSpecies" placeholder="Especie">
-        <input id="petColor" placeholder="Color">
-        <input id="petBreed" placeholder="Raza">
-        <input id="petTattoo" placeholder="Tatuaje">
-        <input id="petAge" placeholder="Edad">
-        <input id="petSizeWeight" placeholder="Tamaño / Peso">
-
-        <h2>Vacunación</h2>
-
-        <div id="vaccinesContainer">
-          <div class="vaccine-block">
-            <input class="vaccines" placeholder="Vacuna">
-            <input class="lab" placeholder="Laboratorio fabricante">
-            <input class="importer" placeholder="Importador">
-
-            <label>Fecha vacunación</label>
-            <input class="vaccinationDate" type="date">
-
-            <input class="serie" placeholder="Serie N°">
-
-            <label>Fecha próxima vacunación</label>
-            <input class="nextVaccinationDate" type="date">
-
-            <label>Cargar certificado de vacunación</label>
-            <input class="certificatePhoto" type="file" accept="image/*">
-
-            <button type="button" class="remove-vaccine">Eliminar vacuna</button>
-          </div>
+        <div class="form-section">
+          <h2>Datos del propietario</h2>
+          <input id="ownerName" placeholder="Nombre propietario" required minlength="3">
+          <input id="ownerRut" placeholder="RUT propietario" required pattern="^[0-9]{7,8}-[0-9kK]{1}$" title="Formato válido: 12345678-9">
+          <input id="ownerAddress" placeholder="Dirección" required minlength="5">
+          <input id="ownerCity" placeholder="Ciudad" required minlength="3">
+          <input id="ownerPhone" placeholder="Teléfono" required pattern="^\+?[0-9]{8,12}$" title="Ingrese solo números, puede incluir +569">
         </div>
 
-        <button type="button" id="addVaccineBtn">+ Agregar otra vacuna</button>
+        <div class="form-section">
+          <h2>Datos de la mascota</h2>
+          <label for="petPhoto">Cargar foto de perfil</label>
+          <input id="petPhoto" type="file" accept="image/*">
 
-        <h2>Médico veterinario</h2>
-        <input id="vetName" placeholder="Nombre médico veterinario" required minlength="3">
-        <input id="vetRun" placeholder="RUN N°" required pattern="^[0-9]{7,8}-[0-9kK]{1}$" title="Formato válido: 12345678-9">
-        <input id="vetAddress" placeholder="Dirección" required minlength="5">
-        <input id="vetCity" placeholder="Ciudad" required minlength="3">
-        <input id="vetPhone" placeholder="Teléfono" required pattern="^\+?[0-9]{8,12}$" title="Ingrese solo números, puede incluir +569">
+          <input id="petName" placeholder="Nombre de mascota" required minlength="2">
+          <input id="petSex" placeholder="Sexo">
+          <input id="petSpecies" placeholder="Especie">
+          <input id="petColor" placeholder="Color">
+          <input id="petBreed" placeholder="Raza">
+          <input id="petTattoo" placeholder="Tatuaje">
+          <input id="petAge" placeholder="Edad">
+          <input id="petSizeWeight" placeholder="Tamaño / Peso">
+        </div>
+
+        <div class="form-section">
+          <h2>Vacunación</h2>
+
+          <div id="vaccinesContainer">
+            <div class="vaccine-block">
+              <input class="vaccines" placeholder="Vacuna">
+              <input class="lab" placeholder="Laboratorio fabricante">
+              <input class="importer" placeholder="Importador">
+
+              <label>Fecha vacunación</label>
+              <input class="vaccinationDate" type="date">
+
+              <input class="serie" placeholder="Serie N°">
+
+              <label>Fecha próxima vacunación</label>
+              <input class="nextVaccinationDate" type="date">
+
+              <label>Cargar certificado de vacunación</label>
+              <input class="certificatePhoto" type="file" accept="image/*">
+
+              <button type="button" class="remove-vaccine">Eliminar vacuna</button>
+            </div>
+          </div>
+
+          <button type="button" id="addVaccineBtn">+ Agregar otra vacuna</button>
+        </div>
+
+        <div class="form-section">
+          <h2>Médico veterinario</h2>
+          <input id="vetName" placeholder="Nombre médico veterinario" required minlength="3">
+          <input id="vetRun" placeholder="RUN N°" required pattern="^[0-9]{7,8}-[0-9kK]{1}$" title="Formato válido: 12345678-9">
+          <input id="vetAddress" placeholder="Dirección" required minlength="5">
+          <input id="vetCity" placeholder="Ciudad" required minlength="3">
+          <input id="vetPhone" placeholder="Teléfono" required pattern="^\+?[0-9]{8,12}$" title="Ingrese solo números, puede incluir +569">
+        </div>
 
         <button type="submit">Generar carnet</button>
       </form>
