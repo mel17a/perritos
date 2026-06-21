@@ -31,6 +31,7 @@
 
         <div class="form-section">
           <h2>Datos de la mascota</h2>
+
           <label for="petPhoto">Cargar foto de perfil</label>
           <input id="petPhoto" type="file" accept="image/*">
 
@@ -41,8 +42,10 @@
           <input id="petBreed" placeholder="Raza">
           <input id="petTattoo" placeholder="Tatuaje">
           <input id="petMicrochip" placeholder="N° microchip">
+
           <label for="petMicrochipDate">Fecha microchip</label>
           <input id="petMicrochipDate" type="date">
+
           <input id="petAge" placeholder="Edad">
           <input id="petSizeWeight" placeholder="Tamaño / Peso">
         </div>
@@ -94,7 +97,7 @@
 
       <div class="info" id="previewInfo"></div>
 
-      <button onclick="exportPDF()">Exportar PDF</button>
+      <button type="button" onclick="exportPDF()">Exportar PDF</button>
     </section>
   </main>
 
