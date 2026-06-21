@@ -152,13 +152,13 @@ function renderPreview(vaccinesHtml) {
         <p><strong>Tamaño / Peso:</strong> ${petSizeWeight.value}</p>
       </div>
 
-      <div class="pdf-profile">
+      <div class="pdf-profile pdf-box">
         <div class="pdf-photo">${petPhotoPreview.innerHTML}</div>
         <h2>${petName.value}</h2>
         <p>Carnet digital de mascota</p>
       </div>
 
-      <div class="pdf-box pdf-wide">
+      <div class="pdf-box">
         <h3>🐾 Vacunación</h3>
         ${vaccinesHtml || "<p>No se registraron vacunas.</p>"}
       </div>
