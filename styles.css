@@ -463,3 +463,52 @@ button:hover {
     grid-template-rows: 1fr 1fr;
   }
 }
+
+.pdf-layout {
+  width: 1123px !important;
+  height: 794px !important;
+  max-width: none !important;
+  aspect-ratio: auto !important;
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1.1fr !important;
+  grid-template-rows: 1fr 1fr !important;
+  gap: 12px !important;
+  padding: 22px !important;
+  background: white !important;
+  overflow: hidden !important;
+}
+
+.pdf-box {
+  overflow: hidden !important;
+}
+
+.pdf-box h3 {
+  font-size: 20px !important;
+}
+
+.pdf-box p {
+  font-size: 14px !important;
+  line-height: 1.35 !important;
+}
+
+.pdf-profile .pdf-photo {
+  width: 185px !important;
+  height: 185px !important;
+}
+
+.pdf-profile .pdf-photo img {
+  object-fit: cover !important;
+  object-position: center !important;
+}
+
+.certificate {
+  max-height: 170px !important;
+  object-fit: cover !important;
+}
+
+@media (max-width: 1100px) {
+  .pdf-layout {
+    transform: scale(0.45);
+    transform-origin: top left;
+  }
+}
