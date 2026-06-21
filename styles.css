@@ -300,3 +300,15 @@ button:hover {
     position: static;
   }
 }
+
+.form-section {
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  padding: 18px;
+  margin-top: 18px;
+  background: var(--soft);
+}
+
+.form-section h2 {
+  margin-top: 0;
+}
