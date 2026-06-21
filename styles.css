@@ -346,3 +346,81 @@ button:hover {
     grid-template-columns: 1fr 1fr 1.15fr;
   }
 }
+
+#carnet > #petPhotoPreview,
+#carnet > #showPetName,
+#carnet > p {
+  display: none !important;
+}
+
+.pdf-layout {
+  display: grid !important;
+  grid-template-columns: 1fr 1fr 1.15fr;
+  gap: 14px;
+  background: transparent;
+}
+
+.pdf-box {
+  border: 1px solid var(--border) !important;
+  border-radius: 18px !important;
+  padding: 16px !important;
+  background: var(--soft) !important;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.pdf-box h3 {
+  color: var(--primary);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+  margin-top: 0;
+  text-transform: uppercase;
+}
+
+.pdf-box p {
+  border-bottom: none !important;
+  padding: 4px 0 !important;
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.pdf-profile {
+  text-align: center;
+}
+
+.pdf-profile .pdf-photo {
+  width: 170px;
+  height: 170px;
+  border-radius: 50%;
+  border: 8px solid var(--accent);
+  overflow: hidden;
+  margin: 0 auto 14px;
+  background: white;
+}
+
+.pdf-profile .pdf-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pdf-profile h2 {
+  font-size: 40px;
+  margin: 8px 0;
+  color: var(--primary);
+  border: none;
+}
+
+.vaccine-preview {
+  border: 1px solid var(--border) !important;
+  border-radius: 16px !important;
+  padding: 14px !important;
+  background: rgba(255,255,255,0.55) !important;
+}
+
+@media (max-width: 1100px) {
+  .pdf-layout {
+    grid-template-columns: 1fr !important;
+  }
+}
