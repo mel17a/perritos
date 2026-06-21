@@ -110,12 +110,8 @@ function renderPreview(vaccinesHtml) {
   previewInfo.innerHTML = `
     <div class="preview-layout" id="pdfLayout">
 
-      <div class="preview-header">
-        <div class="preview-photo">${petPhotoPreview.innerHTML}</div>
-        <div>
-          <h2>${petName.value || "Mascota"}</h2>
-          <p>Carnet digital de mascota</p>
-        </div>
+      <div class="preview-title">
+        <h2>Carnet digital de mascota</h2>
       </div>
 
       <div class="preview-grid">
@@ -141,6 +137,13 @@ function renderPreview(vaccinesHtml) {
           <p><strong>Tamaño / Peso:</strong> ${petSizeWeight.value}</p>
         </div>
 
+        <div class="pdf-box identification-box">
+          <h3>Identificación</h3>
+          <div class="preview-photo">${petPhotoPreview.innerHTML}</div>
+          <h2>${petName.value || "Mascota"}</h2>
+          <p>Carnet digital de mascota</p>
+        </div>
+
         <div class="pdf-box">
           <h3>Vacunación</h3>
           ${vaccinesHtml || "<p>No se registraron vacunas.</p>"}
@@ -158,7 +161,6 @@ function renderPreview(vaccinesHtml) {
     </div>
   `;
 }
-
 async function exportPDF() {
   const { jsPDF } = window.jspdf;
 
