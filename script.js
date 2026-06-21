@@ -167,32 +167,133 @@ function renderPreview(vaccinesHtml) {
   `;
 }
 
-function exportPDF() {
-  const element = document.getElementById("pdfLayout");
+async function exportPDF() {
+  const { jsPDF } = window.jspdf;
 
-  if (!element) {
-    alert("Primero debes generar el carnet.");
-    return;
+  const doc = new jsPDF({
+    orientation: "landscape",
+    unit: "mm",
+    format: "a4"
+  });
+
+  const primary = getComputedStyle(document.body).getPropertyValue("--primary").trim();
+  const soft = getComputedStyle(document.body).getPropertyValue("--soft").trim();
+  const border = getComputedStyle(document.body).getPropertyValue("--border").trim();
+
+  function box(x, y, w, h, title) {
+    doc.setDrawColor(border);
+    doc.setFillColor(soft);
+    doc.roundedRect(x, y, w, h, 4, 4, "FD");
+
+    doc.setTextColor(primary);
+    doc.setFontSize(11);
+    doc.setFont("helvetica", "bold");
+    doc.text(title.toUpperCase(), x + 5, y + 9);
+
+    doc.setDrawColor(border);
+    doc.line(x + 5, y + 12, x + w - 5, y + 12);
   }
 
-  const options = {
-    margin: 4,
-    filename: "carnet-mascota.pdf",
-    image: { type: "jpeg", quality: 0.75 },
-    html2canvas: {
-      scale: 1,
-      useCORS: true,
-      logging: false
-    },
-    jsPDF: {
-      unit: "mm",
-      format: "a4",
-      orientation: "landscape"
-    },
-    pagebreak: {
-      mode: ["avoid-all"]
-    }
-  };
+  function field(label, value, x, y) {
+    doc.setTextColor("#222222");
+    doc.setFontSize(8);
+    doc.setFont("helvetica", "bold");
+    doc.text(`${label}:`, x, y);
 
-  html2pdf().set(options).from(element).save();
+    doc.setFont("helvetica", "normal");
+    const lines = doc.splitTextToSize(value || "-", 55);
+    doc.text(lines, x + 22, y);
+    return y + 6 + (lines.length - 1) * 4;
+  }
+
+  async function fileToImage(input) {
+    const file = input.files[0];
+    if (!file) return null;
+
+    return new Promise(resolve => {
+      const reader = new FileReader();
+      reader.onload = e => resolve(e.target.result);
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // Datos superiores
+  box(8, 8, 86, 78, "🐾 Datos del propietario");
+  let y = 27;
+  y = field("Nombre", ownerName.value, 13, y);
+  y = field("RUT", ownerRut.value, 13, y);
+  y = field("Dirección", ownerAddress.value, 13, y);
+  y = field("Ciudad", ownerCity.value, 13, y);
+  y = field("Teléfono", ownerPhone.value, 13, y);
+
+  box(99, 8, 86, 78, "🐾 Datos de la mascota");
+  y = 27;
+  y = field("Nombre", petName.value, 104, y);
+  y = field("Sexo", petSex.value, 104, y);
+  y = field("Especie", petSpecies.value, 104, y);
+  y = field("Color", petColor.value, 104, y);
+  y = field("Raza", petBreed.value, 104, y);
+  y = field("Tatuaje", petTattoo.value, 104, y);
+  y = field("Microchip", petMicrochip.value, 104, y);
+  y = field("Fecha chip", petMicrochipDate.value, 104, y);
+  y = field("Edad", petAge.value, 104, y);
+  y = field("Peso", petSizeWeight.value, 104, y);
+
+  box(190, 8, 99, 78, "");
+  const petImg = await fileToImage(petPhoto);
+
+  if (petImg) {
+    doc.addImage(petImg, "JPEG", 221, 15, 38, 38);
+  }
+
+  doc.setTextColor(primary);
+  doc.setFontSize(26);
+  doc.setFont("helvetica", "bold");
+  doc.text(petName.value || "Mascota", 239, 62, { align: "center" });
+
+  doc.setTextColor("#333333");
+  doc.setFontSize(9);
+  doc.setFont("helvetica", "normal");
+  doc.text("Carnet digital de mascota", 239, 70, { align: "center" });
+
+  // Vacunación
+  box(8, 92, 138, 108, "🐾 Vacunación");
+
+  const vaccineBlocks = document.querySelectorAll(".vaccine-block");
+  let vy = 111;
+
+  for (let i = 0; i < vaccineBlocks.length; i++) {
+    const block = vaccineBlocks[i];
+
+    vy = field("Vacuna", block.querySelector(".vaccines").value, 13, vy);
+    vy = field("Laboratorio", block.querySelector(".lab").value, 13, vy);
+    vy = field("Importador", block.querySelector(".importer").value, 13, vy);
+    vy = field("Fecha", block.querySelector(".vaccinationDate").value, 13, vy);
+    vy = field("Serie N°", block.querySelector(".serie").value, 13, vy);
+    vy = field("Próxima", block.querySelector(".nextVaccinationDate").value, 13, vy);
+
+    const certImg = await fileToImage(block.querySelector(".certificatePhoto"));
+
+    if (certImg) {
+      doc.addImage(certImg, "JPEG", 13, vy + 2, 58, 28);
+      vy += 35;
+    }
+
+    if (i < vaccineBlocks.length - 1 && vy > 175) {
+      doc.addPage("a4", "landscape");
+      box(8, 8, 138, 190, "🐾 Vacunación continuación");
+      vy = 27;
+    }
+  }
+
+  // Veterinario
+  box(151, 92, 138, 108, "🐾 Médico veterinario");
+  y = 111;
+  y = field("Nombre", vetName.value, 156, y);
+  y = field("RUN N°", vetRun.value, 156, y);
+  y = field("Dirección", vetAddress.value, 156, y);
+  y = field("Ciudad", vetCity.value, 156, y);
+  y = field("Teléfono", vetPhone.value, 156, y);
+
+  doc.save("carnet-mascota.pdf");
 }
