@@ -2,68 +2,175 @@
   box-sizing: border-box;
 }
 
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --primary: #cb408c;
+  --secondary: #e360a8;
+  --accent: #fdc6e4;
+  --text: #1f1f1f;
+  --border: #e8d2df;
+  --soft: #fff4fb;
+}
+
+.theme-female {
+  --bg: #fff4fb;
+  --card: #ffffff;
+  --primary: #cb408c;
+  --secondary: #e360a8;
+  --accent: #fdc6e4;
+  --text: #27131f;
+  --border: #f3b8d9;
+  --soft: #ffeaf6;
+}
+
+.theme-male {
+  --bg: #eef6ff;
+  --card: #ffffff;
+  --primary: #244e7a;
+  --secondary: #6095cc;
+  --accent: #c9e1fb;
+  --text: #102235;
+  --border: #b7d2ef;
+  --soft: #e8f3ff;
+}
+
+.theme-fashion {
+  --bg: #f6f3ed;
+  --card: #ffffff;
+  --primary: #a93c28;
+  --secondary: #0fa579;
+  --accent: #fedb7b;
+  --text: #1e1e1e;
+  --border: #ddd2c4;
+  --soft: #fff7e6;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+}
+
 body {
   font-family: Arial, sans-serif;
-  background: #f4f6f8;
-  margin: 0;
-  padding: 16px;
+  background: var(--bg);
+  color: var(--text);
+  padding: clamp(10px, 2vw, 24px);
 }
 
 .container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  max-width: 1200px;
+  width: 100%;
+  max-width: 1400px;
   margin: auto;
+  display: grid;
+  grid-template-columns: minmax(320px, 1.05fr) minmax(320px, 0.95fr);
+  gap: clamp(14px, 2vw, 28px);
+  align-items: start;
 }
 
 .form-card,
 .card {
-  background: white;
-  border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  background: var(--card);
+  border-radius: 22px;
+  padding: clamp(16px, 2vw, 28px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+  border: 1px solid var(--border);
 }
 
-h1, h2, h3 {
-  margin-top: 10px;
+.theme-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.theme-buttons button {
+  margin: 0;
+  padding: 10px;
+  font-size: 14px;
+  background: var(--soft);
+  color: var(--primary);
+  border: 1px solid var(--border);
+}
+
+h1 {
+  font-size: clamp(28px, 4vw, 46px);
+  margin: 8px 0 18px;
+  color: var(--primary);
+}
+
+h2 {
+  font-size: clamp(22px, 3vw, 32px);
+  margin: 28px 0 12px;
+  color: var(--primary);
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+}
+
+h3 {
+  color: var(--primary);
+  margin: 22px 0 10px;
 }
 
 input {
   width: 100%;
-  padding: 12px;
+  padding: 13px 14px;
   margin: 6px 0;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  font-size: 15px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 16px;
+  background: #fff;
+}
+
+input:focus {
+  outline: 2px solid var(--accent);
+  border-color: var(--primary);
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  margin-bottom: 6px;
+  font-weight: bold;
+  color: var(--text);
 }
 
 button {
   width: 100%;
   margin-top: 16px;
-  padding: 13px;
+  padding: 14px 18px;
   border: none;
-  border-radius: 10px;
-  background: #1f883d;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
   font-size: 16px;
   cursor: pointer;
+  font-weight: bold;
+}
+
+button:hover {
+  filter: brightness(0.95);
 }
 
 .card {
   text-align: center;
+  position: sticky;
+  top: 16px;
 }
 
 .pet-photo {
-  width: 130px;
-  height: 130px;
+  width: clamp(110px, 18vw, 160px);
+  height: clamp(110px, 18vw, 160px);
   border-radius: 50%;
-  background: #ddd;
-  margin: auto;
+  background: var(--soft);
+  border: 5px solid var(--accent);
+  margin: 0 auto 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 55px;
+  font-size: clamp(42px, 7vw, 70px);
   overflow: hidden;
 }
 
@@ -73,82 +180,123 @@ button {
   object-fit: cover;
 }
 
+.card > h1 {
+  margin-bottom: 6px;
+}
+
+.card > p {
+  font-size: clamp(15px, 2vw, 19px);
+  margin: 0 0 16px;
+}
+
 .info {
   text-align: left;
   margin-top: 18px;
 }
 
 .info p {
-  border-bottom: 1px solid #eee;
-  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  padding: 9px 0;
   margin: 0;
   font-size: 15px;
+  line-height: 1.35;
+  word-break: break-word;
+}
+
+.vaccine-block {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  margin-top: 12px;
+  background: var(--soft);
+}
+
+.vaccine-preview {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 12px;
+  margin: 12px 0;
+  background: var(--soft);
+}
+
+.remove-vaccine {
+  background: #b42318;
 }
 
 .certificate {
-  display: none;
+  display: block;
   width: 100%;
-  max-height: 380px;
+  max-height: 360px;
   object-fit: contain;
-  border: 1px solid #ddd;
-  border-radius: 10px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
   margin-top: 10px;
+  background: white;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 950px) {
   .container {
     grid-template-columns: 1fr;
   }
+
+  .card {
+    position: static;
+  }
 }
 
-label {
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 6px;
-  font-weight: bold;
+@media (max-width: 520px) {
+  body {
+    padding: 8px;
+  }
+
+  .form-card,
+  .card {
+    border-radius: 16px;
+    padding: 14px;
+  }
+
+  .theme-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  input,
+  button {
+    font-size: 15px;
+  }
+
+  h1 {
+    font-size: 30px;
+  }
+
+  h2 {
+    font-size: 23px;
+  }
+
+  .pet-photo {
+    width: 105px;
+    height: 105px;
+    font-size: 44px;
+  }
 }
 
-.vaccine-block {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 14px;
-  margin-top: 12px;
-  background: #fafafa;
-}
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
 
-.vaccine-preview {
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px 0;
-}
+  .form-card,
+  .theme-buttons {
+    display: none;
+  }
 
-.remove-vaccine {
-  background: #b42318;
-}
+  .container {
+    display: block;
+  }
 
-.vaccine-block {
-  border: 1px solid #ddd;
-  border-radius: 12px;
-  padding: 14px;
-  margin-top: 12px;
-  background: #fafafa;
-}
-
-.vaccine-preview {
-  border: 1px solid #eee;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-.remove-vaccine {
-  background: #b42318;
-}
-
-label {
-  display: block;
-  margin-top: 10px;
-  margin-bottom: 6px;
-  font-weight: bold;
+  .card {
+    box-shadow: none;
+    border: none;
+    position: static;
+  }
 }
