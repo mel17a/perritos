@@ -141,6 +141,7 @@ function renderPreview(vaccinesHtml) {
 
       <div class="pdf-box">
         <h3>🐾 Datos de la mascota</h3>
+        <p><strong>Nombre:</strong> ${petName.value}</p>
         <p><strong>Sexo:</strong> ${petSex.value}</p>
         <p><strong>Especie:</strong> ${petSpecies.value}</p>
         <p><strong>Color:</strong> ${petColor.value}</p>
