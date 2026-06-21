@@ -311,3 +311,17 @@ button:hover {
     position: static;
   }
 }
+
+.preview-section {
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px;
+  margin-top: 14px;
+  background: var(--soft);
+}
+
+.preview-section h3 {
+  margin-top: 0;
+  border-bottom: 2px solid var(--accent);
+  padding-bottom: 8px;
+}
