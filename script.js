@@ -289,21 +289,16 @@ function makeCircularImage(imageData, size = 400) {
   if (petImg) {
     doc.setDrawColor(border);
     doc.setLineWidth(2);
-    doc.circle(244.5, 57, 21, "S");
-    doc.addImage(petImg, "PNG", 224.5, 37, 40, 40);
+    doc.circle(244.5, 59, 18, "S");
+    doc.addImage(petImg, "PNG", 226.5, 41, 36, 36);
   }
 
   doc.setTextColor(primary);
   doc.setFont("helvetica", "bold");
   doc.setFontSize(18);
-  doc.text(petName.value || "Mascota", 244.5, 86, { align: "center" });
+  doc.text(petName.value || "Mascota", 244.5, 90, { align: "center" });
 
-  doc.setTextColor(text);
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(8);
-  doc.text("Carnet digital de mascota", 244.5, 94, { align: "center" });
-
-  box(8, 112, 138, 88, "Vacunación");
+  box(8, 112, 138, 72, "Vacunación");
 
   const vaccineBlocks = document.querySelectorAll(".vaccine-block");
   let vy = 132;
@@ -327,7 +322,7 @@ function makeCircularImage(imageData, size = 400) {
     field("Vacunas", "No se registraron vacunas", 14, vy);
   }
 
-  box(154, 112, 135, 88, "Médico veterinario");
+  box(154, 112, 135, 72, "Médico veterinario");
   y = 132;
   y = field("Nombre", vetName.value, 160, y, 72);
   y = field("RUN N°", vetRun.value, 160, y);
