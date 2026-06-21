@@ -126,3 +126,29 @@ label {
 .remove-vaccine {
   background: #b42318;
 }
+
+.vaccine-block {
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 14px;
+  margin-top: 12px;
+  background: #fafafa;
+}
+
+.vaccine-preview {
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.remove-vaccine {
+  background: #b42318;
+}
+
+label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
