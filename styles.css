@@ -1,0 +1,49 @@
+body {
+  font-family: Arial, sans-serif;
+  background: #f4f6f8;
+  margin: 0;
+  padding: 30px;
+}
+
+.card {
+  max-width: 420px;
+  margin: auto;
+  background: white;
+  border-radius: 18px;
+  padding: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+  text-align: center;
+}
+
+.pet-photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background: #ddd;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 60px;
+}
+
+.info {
+  text-align: left;
+  margin-top: 20px;
+}
+
+.info p {
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+}
+
+button {
+  margin-top: 20px;
+  padding: 12px 18px;
+  border: none;
+  border-radius: 10px;
+  background: #1f883d;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
