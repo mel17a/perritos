@@ -23,7 +23,8 @@
         <h2>Datos de la mascota</h2>
         <label for="petPhoto">Cargar foto de perfil</label>
         <input id="petPhoto" type="file" accept="image/*">
-        <input id="petName" placeholder="Nombre de mascota">
+
+        <input id="petName" placeholder="Nombre de mascota" required minlength="2">
         <input id="petSex" placeholder="Sexo">
         <input id="petSpecies" placeholder="Especie">
         <input id="petColor" placeholder="Color">
@@ -33,34 +34,36 @@
         <input id="petSizeWeight" placeholder="Tamaño / Peso">
 
         <h2>Vacunación</h2>
-        
+
         <div id="vaccinesContainer">
           <div class="vaccine-block">
             <input class="vaccines" placeholder="Vacuna">
             <input class="lab" placeholder="Laboratorio fabricante">
             <input class="importer" placeholder="Importador">
-        
+
             <label>Fecha vacunación</label>
             <input class="vaccinationDate" type="date">
-        
+
             <input class="serie" placeholder="Serie N°">
-        
+
             <label>Fecha próxima vacunación</label>
             <input class="nextVaccinationDate" type="date">
-        
+
             <label>Cargar certificado de vacunación</label>
             <input class="certificatePhoto" type="file" accept="image/*">
+
+            <button type="button" class="remove-vaccine">Eliminar vacuna</button>
           </div>
         </div>
-        
+
         <button type="button" id="addVaccineBtn">+ Agregar otra vacuna</button>
-        
+
         <h2>Médico veterinario</h2>
-        <input id="vetName" placeholder="Nombre médico veterinario">
-        <input id="vetRun" placeholder="RUN N°">
-        <input id="vetAddress" placeholder="Dirección">
-        <input id="vetCity" placeholder="Ciudad">
-        <input id="vetPhone" placeholder="Teléfono">
+        <input id="vetName" placeholder="Nombre médico veterinario" required minlength="3">
+        <input id="vetRun" placeholder="RUN N°" required pattern="^[0-9]{7,8}-[0-9kK]{1}$" title="Formato válido: 12345678-9">
+        <input id="vetAddress" placeholder="Dirección" required minlength="5">
+        <input id="vetCity" placeholder="Ciudad" required minlength="3">
+        <input id="vetPhone" placeholder="Teléfono" required pattern="^\+?[0-9]{8,12}$" title="Ingrese solo números, puede incluir +569">
 
         <button type="submit">Generar carnet</button>
       </form>
@@ -72,9 +75,6 @@
       <p>Carnet digital de mascota</p>
 
       <div class="info" id="previewInfo"></div>
-
-      <h2>Certificado de vacunación</h2>
-      <img id="certificatePreview" class="certificate" alt="Certificado">
 
       <button onclick="exportPDF()">Exportar PDF</button>
     </section>
