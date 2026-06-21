@@ -353,36 +353,49 @@ button:hover {
   display: none !important;
 }
 
+#carnet > #petPhotoPreview,
+#carnet > #showPetName,
+#carnet > p {
+  display: none !important;
+}
+
 .pdf-layout {
+  width: 100%;
+  max-width: 1050px;
+  aspect-ratio: 1.414 / 1;
   display: grid !important;
-  grid-template-columns: 1fr 1fr 1.15fr;
-  gap: 14px;
-  background: transparent;
+  grid-template-columns: 1fr 1fr 1.1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  background: white;
+  margin: auto;
 }
 
 .pdf-box {
   border: 1px solid var(--border) !important;
-  border-radius: 18px !important;
-  padding: 16px !important;
+  border-radius: 16px !important;
+  padding: 14px !important;
   background: var(--soft) !important;
-  overflow-wrap: break-word;
-  word-break: break-word;
+  overflow: hidden;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .pdf-box h3 {
   color: var(--primary);
   border-bottom: 2px solid var(--accent);
-  padding-bottom: 8px;
-  margin-top: 0;
+  padding-bottom: 6px;
+  margin: 0 0 10px;
+  font-size: 18px;
   text-transform: uppercase;
 }
 
 .pdf-box p {
   border-bottom: none !important;
-  padding: 4px 0 !important;
+  padding: 3px 0 !important;
   margin: 0;
-  font-size: 14px;
-  line-height: 1.35;
+  font-size: 13px;
+  line-height: 1.3;
 }
 
 .pdf-profile {
@@ -403,10 +416,11 @@ button:hover {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
 }
 
 .pdf-profile h2 {
-  font-size: 40px;
+  font-size: 38px;
   margin: 8px 0;
   color: var(--primary);
   border: none;
@@ -414,13 +428,38 @@ button:hover {
 
 .vaccine-preview {
   border: 1px solid var(--border) !important;
-  border-radius: 16px !important;
-  padding: 14px !important;
+  border-radius: 14px !important;
+  padding: 12px !important;
   background: rgba(255,255,255,0.55) !important;
+  overflow: hidden;
+}
+
+.certificate {
+  display: block;
+  width: 100%;
+  max-height: 150px;
+  object-fit: cover;
+  object-position: center;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  margin-top: 8px;
+  background: white;
 }
 
 @media (max-width: 1100px) {
   .pdf-layout {
-    grid-template-columns: 1fr !important;
+    aspect-ratio: auto;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+}
+
+@media print {
+  .pdf-layout {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 1.414 / 1;
+    grid-template-columns: 1fr 1fr 1.1fr;
+    grid-template-rows: 1fr 1fr;
   }
 }
