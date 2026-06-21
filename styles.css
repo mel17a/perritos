@@ -100,3 +100,10 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+label {
+  display: block;
+  margin-top: 10px;
+  margin-bottom: 6px;
+  font-weight: bold;
+}
