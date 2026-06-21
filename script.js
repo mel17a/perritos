@@ -187,6 +187,37 @@ async function exportPDF() {
     });
   }
 
+  function makeCircularImage(imageData, size = 400) {
+    return new Promise(resolve => {
+      const img = new Image();
+
+      img.onload = function() {
+        const canvas = document.createElement("canvas");
+        canvas.width = size;
+        canvas.height = size;
+
+        const ctx = canvas.getContext("2d");
+
+        ctx.beginPath();
+        ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+        ctx.closePath();
+        ctx.clip();
+
+        const scale = Math.max(size / img.width, size / img.height);
+        const width = img.width * scale;
+        const height = img.height * scale;
+        const x = (size - width) / 2;
+        const y = (size - height) / 2;
+
+        ctx.drawImage(img, x, y, width, height);
+
+        resolve(canvas.toDataURL("image/jpeg", 0.9));
+      };
+
+      img.src = imageData;
+    });
+  }
+
   function box(x, y, w, h, title) {
     doc.setDrawColor(border);
     doc.setFillColor(soft);
@@ -214,7 +245,8 @@ async function exportPDF() {
     return y + 5 + ((lines.length - 1) * 3.5);
   }
 
-  const petImg = await fileToImage(petPhoto);
+  const petImgOriginal = await fileToImage(petPhoto);
+  const petImg = petImgOriginal ? await makeCircularImage(petImgOriginal) : null;
 
   doc.setFillColor("#ffffff");
   doc.rect(0, 0, 297, 210, "F");
@@ -249,10 +281,9 @@ async function exportPDF() {
   box(200, 28, 89, 75, "Identificación");
 
   if (petImg) {
-    // Marco circular simulado
     doc.setDrawColor(border);
     doc.setLineWidth(2);
-    doc.circle(244.5, 57, 20, "S");
+    doc.circle(244.5, 57, 21, "S");
     doc.addImage(petImg, "JPEG", 224.5, 37, 40, 40);
   }
 
@@ -297,6 +328,9 @@ async function exportPDF() {
   y = field("Dirección", vetAddress.value, 160, y, 72);
   y = field("Ciudad", vetCity.value, 160, y);
   y = field("Teléfono", vetPhone.value, 160, y);
+
+  doc.save("carnet-mascota.pdf");
+}
 
   doc.save("carnet-mascota.pdf");
 }
