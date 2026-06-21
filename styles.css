@@ -2,113 +2,101 @@
   box-sizing: border-box;
 }
 
-html, body {
-  width: 100%;
-  min-height: 100%;
-  overflow-x: hidden;
-}
-
 body {
   font-family: Arial, sans-serif;
   background: #f4f6f8;
   margin: 0;
-  padding: clamp(8px, 2vw, 18px);
+  padding: 16px;
 }
 
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.form-card,
 .card {
-  width: 100%;
-  max-width: 520px;
-  margin: 0 auto;
   background: white;
   border-radius: 18px;
-  padding: clamp(14px, 3vw, 24px);
+  padding: 22px;
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-  text-align: center;
 }
 
-.pet-photo {
-  width: clamp(80px, 24vw, 150px);
-  height: clamp(80px, 24vw, 150px);
-  border-radius: 50%;
-  background: #ddd;
-  margin: 0 auto 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: clamp(34px, 8vw, 64px);
-}
-
-h1 {
-  font-size: clamp(28px, 6vw, 44px);
-  margin: 8px 0;
-}
-
-.card > p {
-  font-size: clamp(15px, 3vw, 20px);
-  margin: 8px 0 16px;
-}
-
-.info {
-  text-align: left;
+h1, h2, h3 {
   margin-top: 10px;
-  width: 100%;
 }
 
-.info p {
-  border-bottom: 1px solid #eee;
-  padding: clamp(7px, 1.8vw, 11px) 0;
-  margin: 0;
-  font-size: clamp(14px, 3.2vw, 19px);
-  line-height: 1.25;
-  word-break: break-word;
+input {
+  width: 100%;
+  padding: 12px;
+  margin: 6px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
 }
 
 button {
+  width: 100%;
   margin-top: 16px;
-  padding: 12px 18px;
+  padding: 13px;
   border: none;
   border-radius: 10px;
   background: #1f883d;
   color: white;
-  font-size: clamp(15px, 3vw, 18px);
+  font-size: 16px;
   cursor: pointer;
 }
 
-/* Modo compacto cuando la ventana tiene poca altura */
-@media (max-height: 760px) {
-  body {
-    padding: 6px;
-  }
+.card {
+  text-align: center;
+}
 
-  .card {
-    padding: 12px 22px;
-  }
+.pet-photo {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: #ddd;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 55px;
+  overflow: hidden;
+}
 
-  .pet-photo {
-    width: 70px;
-    height: 70px;
-    font-size: 34px;
-    margin-bottom: 8px;
-  }
+.pet-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
-  h1 {
-    font-size: 30px;
-    margin: 4px 0;
-  }
+.info {
+  text-align: left;
+  margin-top: 18px;
+}
 
-  .card > p {
-    font-size: 16px;
-    margin: 4px 0 10px;
-  }
+.info p {
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+  margin: 0;
+  font-size: 15px;
+}
 
-  .info p {
-    padding: 6px 0;
-    font-size: 15px;
-  }
+.certificate {
+  display: none;
+  width: 100%;
+  max-height: 380px;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  margin-top: 10px;
+}
 
-  button {
-    margin-top: 10px;
-    padding: 10px 16px;
-    font-size: 15px;
+@media (max-width: 850px) {
+  .container {
+    grid-template-columns: 1fr;
   }
 }
