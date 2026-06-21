@@ -33,14 +33,27 @@
         <input id="petSizeWeight" placeholder="Tamaño / Peso">
 
         <h2>Vacunación</h2>
-        <input id="vaccines" placeholder="Vacunas">
-        <input id="lab" placeholder="Laboratorio fabricante">
-        <input id="importer" placeholder="Importador">
-        <label for="vaccinationDate">Fecha vacunación</label>
-        <input id="vaccinationDate" type="date" required>
-        <input id="serie" placeholder="Serie N°">
-        <label for="nextVaccinationDate">Fecha próxima vacunación</label>
-        <input id="nextVaccinationDate" type="date" required>
+        
+        <div id="vaccinesContainer">
+          <div class="vaccine-block">
+            <input class="vaccines" placeholder="Vacuna">
+            <input class="lab" placeholder="Laboratorio fabricante">
+            <input class="importer" placeholder="Importador">
+        
+            <label>Fecha vacunación</label>
+            <input class="vaccinationDate" type="date">
+        
+            <input class="serie" placeholder="Serie N°">
+        
+            <label>Fecha próxima vacunación</label>
+            <input class="nextVaccinationDate" type="date">
+        
+            <label>Cargar certificado de vacunación</label>
+            <input class="certificatePhoto" type="file" accept="image/*">
+          </div>
+        </div>
+        
+        <button type="button" id="addVaccineBtn">+ Agregar otra vacuna</button>
         
         <h2>Médico veterinario</h2>
         <input id="vetName" placeholder="Nombre médico veterinario">
@@ -48,10 +61,6 @@
         <input id="vetAddress" placeholder="Dirección">
         <input id="vetCity" placeholder="Ciudad">
         <input id="vetPhone" placeholder="Teléfono">
-
-        <h2>Certificado</h2>
-        <label for="certificatePhoto">Cargar certificado de vacunación</label>
-        <input id="certificatePhoto" type="file" accept="image/*">
 
         <button type="submit">Generar carnet</button>
       </form>
