@@ -2,64 +2,68 @@
   box-sizing: border-box;
 }
 
+html, body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: #f4f6f8;
   margin: 0;
-  padding: 20px;
+  padding: 12px;
 }
 
 .card {
   width: 100%;
-  max-width: 520px;
-  margin: 30px auto;
+  max-width: min(520px, 100%);
+  margin: 12px auto;
   background: white;
   border-radius: 18px;
-  padding: 28px;
+  padding: clamp(16px, 4vw, 28px);
   box-shadow: 0 4px 12px rgba(0,0,0,0.12);
   text-align: center;
 }
 
 .pet-photo {
-  width: 38vw;
-  height: 38vw;
-  max-width: 180px;
-  max-height: 180px;
-  min-width: 120px;
-  min-height: 120px;
+  width: clamp(110px, 38vw, 180px);
+  height: clamp(110px, 38vw, 180px);
   border-radius: 50%;
   background: #ddd;
   margin: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: clamp(45px, 12vw, 75px);
+  font-size: clamp(42px, 12vw, 75px);
 }
 
 h1 {
-  font-size: clamp(36px, 8vw, 54px);
-  margin-bottom: 10px;
+  font-size: clamp(30px, 9vw, 54px);
+  margin: 24px 0 8px;
 }
 
 .card > p {
-  font-size: clamp(18px, 4vw, 24px);
+  font-size: clamp(16px, 4.5vw, 22px);
 }
 
 .info {
   text-align: left;
-  margin-top: 24px;
+  margin-top: 20px;
+  width: 100%;
 }
 
 .info p {
   border-bottom: 1px solid #eee;
-  padding: 14px 0;
-  font-size: clamp(17px, 4vw, 24px);
-  line-height: 1.4;
+  padding: 12px 0;
+  font-size: clamp(15px, 4.2vw, 22px);
+  line-height: 1.35;
+  word-break: break-word;
 }
 
 button {
   width: 100%;
-  margin-top: 22px;
+  margin-top: 20px;
   padding: 14px 18px;
   border: none;
   border-radius: 10px;
@@ -67,20 +71,4 @@ button {
   color: white;
   font-size: clamp(16px, 4vw, 20px);
   cursor: pointer;
-}
-
-@media (max-width: 480px) {
-  body {
-    padding: 12px;
-  }
-
-  .card {
-    margin: 10px auto;
-    padding: 20px;
-    border-radius: 14px;
-  }
-
-  .info p {
-    padding: 12px 0;
-  }
 }
