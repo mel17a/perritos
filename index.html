@@ -14,13 +14,14 @@
 
       <form id="petForm">
         <h2>Datos del propietario</h2>
-        <input id="ownerName" placeholder="Nombre propietario">
-        <input id="ownerRut" placeholder="RUT propietario">
-        <input id="ownerAddress" placeholder="Dirección">
-        <input id="ownerCity" placeholder="Ciudad">
-        <input id="ownerPhone" placeholder="Teléfono">
+        <input id="ownerName" placeholder="Nombre propietario" required minlength="3">
+        <input id="ownerRut" placeholder="RUT propietario" required pattern="^[0-9]{7,8}-[0-9kK]{1}$" title="Formato válido: 12345678-9">
+        <input id="ownerAddress" placeholder="Dirección" required minlength="5">
+        <input id="ownerCity" placeholder="Ciudad" required minlength="3">
+        <input id="ownerPhone" placeholder="Teléfono" required pattern="^\+?[0-9]{8,12}$" title="Ingrese solo números, puede incluir +569">
 
         <h2>Datos de la mascota</h2>
+        <label for="petPhoto">Cargar foto de perfil</label>
         <input id="petPhoto" type="file" accept="image/*">
         <input id="petName" placeholder="Nombre de mascota">
         <input id="petSex" placeholder="Sexo">
@@ -35,10 +36,12 @@
         <input id="vaccines" placeholder="Vacunas">
         <input id="lab" placeholder="Laboratorio fabricante">
         <input id="importer" placeholder="Importador">
-        <input id="vaccinationDate" type="date">
+        <label for="vaccinationDate">Fecha vacunación</label>
+        <input id="vaccinationDate" type="date" required>
         <input id="serie" placeholder="Serie N°">
-        <input id="nextVaccinationDate" type="date">
-
+        <label for="nextVaccinationDate">Fecha próxima vacunación</label>
+        <input id="nextVaccinationDate" type="date" required>
+        
         <h2>Médico veterinario</h2>
         <input id="vetName" placeholder="Nombre médico veterinario">
         <input id="vetRun" placeholder="RUN N°">
@@ -47,6 +50,7 @@
         <input id="vetPhone" placeholder="Teléfono">
 
         <h2>Certificado</h2>
+        <label for="certificatePhoto">Cargar certificado de vacunación</label>
         <input id="certificatePhoto" type="file" accept="image/*">
 
         <button type="submit">Generar carnet</button>
