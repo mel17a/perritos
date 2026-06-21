@@ -5,6 +5,22 @@ const petPhotoPreview = document.getElementById("petPhotoPreview");
 const addVaccineBtn = document.getElementById("addVaccineBtn");
 const vaccinesContainer = document.getElementById("vaccinesContainer");
 
+function setTheme(theme) {
+  document.body.className = "";
+
+  if (theme === "female") {
+    document.body.classList.add("theme-female");
+  }
+
+  if (theme === "male") {
+    document.body.classList.add("theme-male");
+  }
+
+  if (theme === "fashion") {
+    document.body.classList.add("theme-fashion");
+  }
+}
+
 function readImage(input, callback) {
   const file = input.files[0];
 
