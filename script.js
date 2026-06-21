@@ -128,31 +128,39 @@ form.addEventListener("submit", function(e) {
 
 function renderPreview(vaccinesHtml) {
   previewInfo.innerHTML = `
-    <h3>Datos del propietario</h3>
-    <p><strong>Nombre:</strong> ${ownerName.value}</p>
-    <p><strong>RUT:</strong> ${ownerRut.value}</p>
-    <p><strong>Dirección:</strong> ${ownerAddress.value}</p>
-    <p><strong>Ciudad:</strong> ${ownerCity.value}</p>
-    <p><strong>Teléfono:</strong> ${ownerPhone.value}</p>
+    <div class="preview-section">
+      <h3>Datos del propietario</h3>
+      <p><strong>Nombre:</strong> ${ownerName.value}</p>
+      <p><strong>RUT:</strong> ${ownerRut.value}</p>
+      <p><strong>Dirección:</strong> ${ownerAddress.value}</p>
+      <p><strong>Ciudad:</strong> ${ownerCity.value}</p>
+      <p><strong>Teléfono:</strong> ${ownerPhone.value}</p>
+    </div>
 
-    <h3>Datos de la mascota</h3>
-    <p><strong>Sexo:</strong> ${petSex.value}</p>
-    <p><strong>Especie:</strong> ${petSpecies.value}</p>
-    <p><strong>Color:</strong> ${petColor.value}</p>
-    <p><strong>Raza:</strong> ${petBreed.value}</p>
-    <p><strong>Tatuaje:</strong> ${petTattoo.value}</p>
-    <p><strong>Edad:</strong> ${petAge.value}</p>
-    <p><strong>Tamaño / Peso:</strong> ${petSizeWeight.value}</p>
+    <div class="preview-section">
+      <h3>Datos de la mascota</h3>
+      <p><strong>Sexo:</strong> ${petSex.value}</p>
+      <p><strong>Especie:</strong> ${petSpecies.value}</p>
+      <p><strong>Color:</strong> ${petColor.value}</p>
+      <p><strong>Raza:</strong> ${petBreed.value}</p>
+      <p><strong>Tatuaje:</strong> ${petTattoo.value}</p>
+      <p><strong>Edad:</strong> ${petAge.value}</p>
+      <p><strong>Tamaño / Peso:</strong> ${petSizeWeight.value}</p>
+    </div>
 
-    <h3>Vacunación</h3>
-    ${vaccinesHtml || "<p>No se registraron vacunas.</p>"}
+    <div class="preview-section">
+      <h3>Vacunación</h3>
+      ${vaccinesHtml || "<p>No se registraron vacunas.</p>"}
+    </div>
 
-    <h3>Médico veterinario</h3>
-    <p><strong>Nombre:</strong> ${vetName.value}</p>
-    <p><strong>RUN N°:</strong> ${vetRun.value}</p>
-    <p><strong>Dirección:</strong> ${vetAddress.value}</p>
-    <p><strong>Ciudad:</strong> ${vetCity.value}</p>
-    <p><strong>Teléfono:</strong> ${vetPhone.value}</p>
+    <div class="preview-section">
+      <h3>Médico veterinario</h3>
+      <p><strong>Nombre:</strong> ${vetName.value}</p>
+      <p><strong>RUN N°:</strong> ${vetRun.value}</p>
+      <p><strong>Dirección:</strong> ${vetAddress.value}</p>
+      <p><strong>Ciudad:</strong> ${vetCity.value}</p>
+      <p><strong>Teléfono:</strong> ${vetPhone.value}</p>
+    </div>
   `;
 }
 
