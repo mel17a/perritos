@@ -7,14 +7,22 @@ const vaccinesContainer = document.getElementById("vaccinesContainer");
 
 function readImage(input, callback) {
   const file = input.files[0];
-  if (!file) return callback("");
+
+  if (!file) {
+    callback("");
+    return;
+  }
 
   const reader = new FileReader();
-  reader.onload = e => callback(e.target.result);
+
+  reader.onload = function(e) {
+    callback(e.target.result);
+  };
+
   reader.readAsDataURL(file);
 }
 
-addVaccineBtn.addEventListener("click", () => {
+function createVaccineBlock() {
   const vaccineBlock = document.createElement("div");
   vaccineBlock.className = "vaccine-block";
 
@@ -38,10 +46,16 @@ addVaccineBtn.addEventListener("click", () => {
   `;
 
   vaccinesContainer.appendChild(vaccineBlock);
+}
 
-  vaccineBlock.querySelector(".remove-vaccine").addEventListener("click", () => {
-    vaccineBlock.remove();
-  });
+addVaccineBtn.addEventListener("click", function() {
+  createVaccineBlock();
+});
+
+vaccinesContainer.addEventListener("click", function(e) {
+  if (e.target.classList.contains("remove-vaccine")) {
+    e.target.closest(".vaccine-block").remove();
+  }
 });
 
 form.addEventListener("submit", function(e) {
@@ -49,22 +63,28 @@ form.addEventListener("submit", function(e) {
 
   showPetName.textContent = petName.value || "Nombre mascota";
 
-  readImage(petPhoto, src => {
+  readImage(petPhoto, function(src) {
     if (src) {
       petPhotoPreview.innerHTML = `<img src="${src}" alt="Foto mascota">`;
+    } else {
+      petPhotoPreview.innerHTML = "🐶";
     }
   });
 
   const vaccineBlocks = document.querySelectorAll(".vaccine-block");
-  let vaccinesHtml = "";
-
-  let pendingImages = vaccineBlocks.length;
   const vaccineResults = [];
 
-  vaccineBlocks.forEach((block, index) => {
+  if (vaccineBlocks.length === 0) {
+    renderPreview("");
+    return;
+  }
+
+  let pendingImages = vaccineBlocks.length;
+
+  vaccineBlocks.forEach(function(block, index) {
     const certificateInput = block.querySelector(".certificatePhoto");
 
-    readImage(certificateInput, certSrc => {
+    readImage(certificateInput, function(certSrc) {
       vaccineResults[index] = `
         <div class="vaccine-preview">
           <p><strong>Vacuna:</strong> ${block.querySelector(".vaccines").value}</p>
@@ -73,46 +93,52 @@ form.addEventListener("submit", function(e) {
           <p><strong>Fecha vacunación:</strong> ${block.querySelector(".vaccinationDate").value}</p>
           <p><strong>Serie N°:</strong> ${block.querySelector(".serie").value}</p>
           <p><strong>Próxima vacunación:</strong> ${block.querySelector(".nextVaccinationDate").value}</p>
-          ${certSrc ? `<img class="certificate" src="${certSrc}" alt="Certificado vacunación">` : ""}
+          ${
+            certSrc
+              ? `<img class="certificate" src="${certSrc}" alt="Certificado vacunación">`
+              : ""
+          }
         </div>
       `;
 
       pendingImages--;
 
       if (pendingImages === 0) {
-        vaccinesHtml = vaccineResults.join("");
-
-        previewInfo.innerHTML = `
-          <h3>Datos del propietario</h3>
-          <p><strong>Nombre:</strong> ${ownerName.value}</p>
-          <p><strong>RUT:</strong> ${ownerRut.value}</p>
-          <p><strong>Dirección:</strong> ${ownerAddress.value}</p>
-          <p><strong>Ciudad:</strong> ${ownerCity.value}</p>
-          <p><strong>Teléfono:</strong> ${ownerPhone.value}</p>
-
-          <h3>Datos de la mascota</h3>
-          <p><strong>Sexo:</strong> ${petSex.value}</p>
-          <p><strong>Especie:</strong> ${petSpecies.value}</p>
-          <p><strong>Color:</strong> ${petColor.value}</p>
-          <p><strong>Raza:</strong> ${petBreed.value}</p>
-          <p><strong>Tatuaje:</strong> ${petTattoo.value}</p>
-          <p><strong>Edad:</strong> ${petAge.value}</p>
-          <p><strong>Tamaño / Peso:</strong> ${petSizeWeight.value}</p>
-
-          <h3>Vacunación</h3>
-          ${vaccinesHtml}
-
-          <h3>Médico veterinario</h3>
-          <p><strong>Nombre:</strong> ${vetName.value}</p>
-          <p><strong>RUN N°:</strong> ${vetRun.value}</p>
-          <p><strong>Dirección:</strong> ${vetAddress.value}</p>
-          <p><strong>Ciudad:</strong> ${vetCity.value}</p>
-          <p><strong>Teléfono:</strong> ${vetPhone.value}</p>
-        `;
+        renderPreview(vaccineResults.join(""));
       }
     });
   });
 });
+
+function renderPreview(vaccinesHtml) {
+  previewInfo.innerHTML = `
+    <h3>Datos del propietario</h3>
+    <p><strong>Nombre:</strong> ${ownerName.value}</p>
+    <p><strong>RUT:</strong> ${ownerRut.value}</p>
+    <p><strong>Dirección:</strong> ${ownerAddress.value}</p>
+    <p><strong>Ciudad:</strong> ${ownerCity.value}</p>
+    <p><strong>Teléfono:</strong> ${ownerPhone.value}</p>
+
+    <h3>Datos de la mascota</h3>
+    <p><strong>Sexo:</strong> ${petSex.value}</p>
+    <p><strong>Especie:</strong> ${petSpecies.value}</p>
+    <p><strong>Color:</strong> ${petColor.value}</p>
+    <p><strong>Raza:</strong> ${petBreed.value}</p>
+    <p><strong>Tatuaje:</strong> ${petTattoo.value}</p>
+    <p><strong>Edad:</strong> ${petAge.value}</p>
+    <p><strong>Tamaño / Peso:</strong> ${petSizeWeight.value}</p>
+
+    <h3>Vacunación</h3>
+    ${vaccinesHtml || "<p>No se registraron vacunas.</p>"}
+
+    <h3>Médico veterinario</h3>
+    <p><strong>Nombre:</strong> ${vetName.value}</p>
+    <p><strong>RUN N°:</strong> ${vetRun.value}</p>
+    <p><strong>Dirección:</strong> ${vetAddress.value}</p>
+    <p><strong>Ciudad:</strong> ${vetCity.value}</p>
+    <p><strong>Teléfono:</strong> ${vetPhone.value}</p>
+  `;
+}
 
 function exportPDF() {
   const element = document.getElementById("carnet");
