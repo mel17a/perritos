@@ -325,3 +325,79 @@ button:hover {
   border-bottom: 2px solid var(--accent);
   padding-bottom: 8px;
 }
+
+.pdf-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.2fr;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  background: white;
+}
+
+.pdf-box,
+.pdf-profile {
+  padding: 18px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: #fff;
+}
+
+.pdf-box h3 {
+  margin-top: 0;
+  color: var(--primary);
+  text-transform: uppercase;
+  border-bottom: none;
+}
+
+.pdf-box p {
+  border-bottom: none;
+  padding: 4px 0;
+  font-size: 14px;
+}
+
+.pdf-profile {
+  text-align: center;
+  border-right: none;
+}
+
+.pdf-profile .pdf-photo {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  border: 8px solid var(--accent);
+  overflow: hidden;
+  margin: 0 auto 16px;
+}
+
+.pdf-profile .pdf-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pdf-profile h2 {
+  font-size: 44px;
+  margin: 8px 0;
+  color: var(--primary);
+  border: none;
+}
+
+.pdf-wide {
+  grid-column: span 2;
+}
+
+@media (max-width: 950px) {
+  .pdf-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .pdf-wide {
+    grid-column: span 1;
+  }
+
+  .pdf-box,
+  .pdf-profile {
+    border-right: none;
+  }
+}
