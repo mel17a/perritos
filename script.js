@@ -191,36 +191,40 @@ async function exportPDF() {
     });
   }
 
-  function makeCircularImage(imageData, size = 400) {
-    return new Promise(resolve => {
-      const img = new Image();
+function makeCircularImage(imageData, size = 400) {
+  return new Promise(resolve => {
+    const img = new Image();
 
-      img.onload = function() {
-        const canvas = document.createElement("canvas");
-        canvas.width = size;
-        canvas.height = size;
+    img.onload = function() {
+      const canvas = document.createElement("canvas");
+      canvas.width = size;
+      canvas.height = size;
 
-        const ctx = canvas.getContext("2d");
+      const ctx = canvas.getContext("2d");
 
-        ctx.beginPath();
-        ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-        ctx.closePath();
-        ctx.clip();
+      // Usa el color suave del tema activo: hembra, macho o moda
+      ctx.fillStyle = soft;
+      ctx.fillRect(0, 0, size, size);
 
-        const scale = Math.max(size / img.width, size / img.height);
-        const width = img.width * scale;
-        const height = img.height * scale;
-        const x = (size - width) / 2;
-        const y = (size - height) / 2;
+      ctx.beginPath();
+      ctx.arc(size / 2, size / 2, size / 2 - 8, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
 
-        ctx.drawImage(img, x, y, width, height);
+      const scale = Math.max(size / img.width, size / img.height);
+      const width = img.width * scale;
+      const height = img.height * scale;
+      const x = (size - width) / 2;
+      const y = (size - height) / 2;
 
-        resolve(canvas.toDataURL("image/png"));
-      };
+      ctx.drawImage(img, x, y, width, height);
 
-      img.src = imageData;
-    });
-  }
+      resolve(canvas.toDataURL("image/jpeg", 0.9));
+    };
+
+    img.src = imageData;
+  });
+}
 
   function box(x, y, w, h, title) {
     doc.setDrawColor(border);
@@ -286,7 +290,7 @@ async function exportPDF() {
     doc.setDrawColor(border);
     doc.setLineWidth(2);
     doc.circle(244.5, 57, 21, "S");
-    doc.addImage(petImg, "PNG", 224.5, 37, 40, 40);
+    doc.addImage(petImg, "JPEG", 224.5, 37, 40, 40);
   }
 
   doc.setTextColor(primary);
