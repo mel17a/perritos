@@ -202,12 +202,12 @@ function makeCircularImage(imageData, size = 400) {
 
       const ctx = canvas.getContext("2d");
 
-      // Usa el color suave del tema activo: hembra, macho o moda
       ctx.fillStyle = soft;
       ctx.fillRect(0, 0, size, size);
 
+      ctx.save();
       ctx.beginPath();
-      ctx.arc(size / 2, size / 2, size / 2 - 8, 0, Math.PI * 2);
+      ctx.arc(size / 2, size / 2, size / 2 - 10, 0, Math.PI * 2);
       ctx.closePath();
       ctx.clip();
 
@@ -218,8 +218,9 @@ function makeCircularImage(imageData, size = 400) {
       const y = (size - height) / 2;
 
       ctx.drawImage(img, x, y, width, height);
+      ctx.restore();
 
-      resolve(canvas.toDataURL("image/png", 0.9));
+      resolve(canvas.toDataURL("image/jpeg", 0.95));
     };
 
     img.src = imageData;
@@ -227,15 +228,17 @@ function makeCircularImage(imageData, size = 400) {
 }
 
   function box(x, y, w, h, title) {
+    doc.setLineWidth(0.25);
     doc.setDrawColor(border);
     doc.setFillColor(soft);
     doc.roundedRect(x, y, w, h, 4, 4, "FD");
-
+  
     doc.setTextColor(primary);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
     doc.text(title.toUpperCase(), x + 5, y + 9);
-
+  
+    doc.setLineWidth(0.25);
     doc.setDrawColor(border);
     doc.line(x + 5, y + 12, x + w - 5, y + 12);
   }
@@ -287,10 +290,13 @@ function makeCircularImage(imageData, size = 400) {
   box(200, 28, 89, 75, "Identificación");
 
   if (petImg) {
+    doc.addImage(petImg, "JPEG", 226.5, 41, 36, 36);
+  
+    doc.setLineWidth(1.2);
     doc.setDrawColor(border);
-    doc.setLineWidth(2);
     doc.circle(244.5, 59, 18, "S");
-    doc.addImage(petImg, "PNG", 226.5, 41, 36, 36);
+  
+    doc.setLineWidth(0.25);
   }
 
   doc.setTextColor(primary);
