@@ -34,13 +34,13 @@
 }
 
 .theme-fashion {
-  --bg: #f6f3ed;
+  --bg: #fff8e8;
   --primary: #a93c28;
   --secondary: #0fa579;
   --accent: #fedb7b;
   --text: #1e1e1e;
   --border: #ddd2c4;
-  --soft: #fff7e6;
+  --soft: #fff3d6;
 }
 
 html,
