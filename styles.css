@@ -294,3 +294,32 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+input[type="date"] {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.form-section,
+.vaccine-block {
+  overflow: hidden;
+}
+
+@media (max-width: 600px) {
+  input {
+    min-width: 0;
+    max-width: 100%;
+    padding: 12px;
+  }
+
+  input[type="date"] {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
