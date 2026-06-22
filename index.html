@@ -38,8 +38,9 @@
             <option value="Otro">Otro</option>
           </select>
 
-          <input id="ownerCity" list="chileCitiesList" placeholder="Ciudad / comuna" required>
-
+          <select id="ownerCity" required>
+          <option value="">Seleccione ciudad / comuna</option>
+          </select>
           <input id="ownerAddress" placeholder="Dirección" required minlength="5">
 
           <input id="ownerPhone" placeholder="Teléfono" required pattern="^\+?[0-9]{8,12}$" title="Ingrese solo números, puede incluir +569">
@@ -111,7 +112,9 @@
             <option value="Otro">Otro</option>
           </select>
 
-          <input id="vetCity" list="chileCitiesList" placeholder="Ciudad / comuna" required minlength="3">
+          <select id="vetCity" required>
+          <option value="">Seleccione ciudad / comuna</option>
+          </select>
 
           <input id="vetAddress" placeholder="Dirección" required minlength="5">
 
@@ -132,7 +135,6 @@
       <button type="button" onclick="exportPDF()">Exportar PDF</button>
     </section>
 
-    <datalist id="chileCitiesList"></datalist>
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
