@@ -196,20 +196,6 @@ async function exportPDF() {
     doc.line(x + 5, y + 12, x + w - 5, y + 12);
   }
 
-  async function imageUrlToBase64(url) {
-    try {
-      const res = await fetch(url);
-      const blob = await res.blob();
-      return await new Promise(resolve => {
-        const reader = new FileReader();
-        reader.onload = e => resolve(e.target.result);
-        reader.readAsDataURL(blob);
-      });
-    } catch {
-      return "";
-    }
-  }
-
   function makeCircularImage(imageData, size = 400) {
     return new Promise(resolve => {
       const img = new Image();
@@ -242,20 +228,11 @@ async function exportPDF() {
     });
   }
 
-  const bgBase64 = await imageUrlToBase64("fondo.png");
   const petImgOriginal = await readImage($("petPhoto"));
   const petImg = petImgOriginal ? await makeCircularImage(petImgOriginal) : "";
 
   doc.setFillColor("#ffffff");
   doc.rect(0, 0, 297, 210, "F");
-
-  if (bgBase64) {
-    for (let x = 0; x < 297; x += 42) {
-      for (let y = 0; y < 210; y += 42) {
-        doc.addImage(bgBase64, "PNG", x, y, 18, 18);
-      }
-    }
-  }
 
   doc.setTextColor(primary);
   doc.setFont("helvetica", "bold");
