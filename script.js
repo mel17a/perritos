@@ -16,7 +16,11 @@ function setTheme(theme) {
 function readImage(input) {
   return new Promise(resolve => {
     const file = input?.files?.[0];
-    if (!file) return resolve("");
+
+    if (!file) {
+      resolve("");
+      return;
+    }
 
     const reader = new FileReader();
     reader.onload = e => resolve(e.target.result);
@@ -62,6 +66,7 @@ form.addEventListener("submit", async e => {
   e.preventDefault();
 
   const petImg = await readImage($("petPhoto"));
+
   petPhotoPreview.innerHTML = petImg
     ? `<img src="${petImg}" alt="Foto mascota">`
     : "🐶";
@@ -73,12 +78,6 @@ form.addEventListener("submit", async e => {
 
 async function buildVaccinesPreview() {
   const vaccineBlocks = document.querySelectorAll(".vaccine-block");
-
-  if (vaccineBlocks.length === 0) {
-    renderPreview("");
-    return;
-  }
-
   const vaccineResults = [];
 
   for (const block of vaccineBlocks) {
@@ -163,9 +162,9 @@ async function exportPDF() {
     format: "a4"
   });
 
-  const primary = getComputedStyle(document.body).getPropertyValue("--primary").trim();
-  const soft = getComputedStyle(document.body).getPropertyValue("--soft").trim();
-  const border = getComputedStyle(document.body).getPropertyValue("--border").trim();
+  const primary = getComputedStyle(document.body).getPropertyValue("--primary").trim() || "#cb408c";
+  const soft = getComputedStyle(document.body).getPropertyValue("--soft").trim() || "#ffeaf6";
+  const border = getComputedStyle(document.body).getPropertyValue("--border").trim() || "#f3b8d9";
   const text = "#222222";
 
   function field(label, value, x, y, maxWidth = 50) {
@@ -193,18 +192,21 @@ async function exportPDF() {
     doc.text(title.toUpperCase(), x + 5, y + 9);
 
     doc.setLineWidth(0.8);
+    doc.setDrawColor(border);
     doc.line(x + 5, y + 12, x + w - 5, y + 12);
   }
 
   function makeCircularImage(imageData, size = 400) {
     return new Promise(resolve => {
       const img = new Image();
+
       img.onload = () => {
         const canvas = document.createElement("canvas");
         canvas.width = size;
         canvas.height = size;
 
         const ctx = canvas.getContext("2d");
+
         ctx.fillStyle = soft;
         ctx.fillRect(0, 0, size, size);
 
@@ -224,6 +226,8 @@ async function exportPDF() {
 
         resolve(canvas.toDataURL("image/jpeg", 0.95));
       };
+
+      img.onerror = () => resolve("");
       img.src = imageData;
     });
   }
@@ -287,6 +291,7 @@ async function exportPDF() {
     y = field("Próxima", block.querySelector(".nextVaccinationDate").value, 14, y);
 
     const certImg = await readImage(block.querySelector(".certificatePhoto"));
+
     if (certImg) {
       doc.addImage(certImg, "JPEG", 82, 132, 54, 38);
     }
