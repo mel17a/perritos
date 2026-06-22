@@ -197,7 +197,7 @@ button {
 }
 
 .pdf-box {
-  border: 2px solid var(--border);
+  border: 3px solid var(--border);
   border-radius: 18px;
   padding: 18px;
   background: rgba(255, 234, 246, 0.90);
