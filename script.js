@@ -242,7 +242,7 @@ async function exportPDF() {
   }
 
   function box(x, y, w, h, title) {
-    doc.setLineWidth(1.2);
+    doc.setLineWidth(1.8);
     doc.setDrawColor(border);
     doc.setFillColor(soft);
     doc.roundedRect(x, y, w, h, 4, 4, "FD");
@@ -252,7 +252,7 @@ async function exportPDF() {
     doc.setFontSize(11);
     doc.text(title.toUpperCase(), x + 5, y + 9);
 
-    doc.setLineWidth(0.8);
+    doc.setLineWidth(1.2);
     doc.setDrawColor(border);
     doc.line(x + 5, y + 12, x + w - 5, y + 12);
 
