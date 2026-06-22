@@ -267,12 +267,14 @@ button {
 }
 
 .certificate {
+  display: block;
   width: 100%;
-  max-height: 120px;
-  object-fit: cover;
+  max-width: 360px;
+  max-height: 180px;
+  object-fit: contain;
   object-position: center;
   border-radius: 10px;
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 input[type="date"] {
