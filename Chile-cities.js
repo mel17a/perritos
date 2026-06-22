@@ -17,17 +17,24 @@ const CHILE_CITIES = [
   "Santiago", "Independencia", "Conchalí", "Huechuraba", "Recoleta", "Providencia", "Vitacura", "Lo Barnechea", "Las Condes", "Ñuñoa", "La Reina", "Macul", "Peñalolén", "La Florida", "San Joaquín", "La Granja", "La Pintana", "San Ramón", "San Miguel", "La Cisterna", "El Bosque", "Pedro Aguirre Cerda", "Lo Espejo", "Estación Central", "Cerrillos", "Maipú", "Quinta Normal", "Lo Prado", "Pudahuel", "Cerro Navia", "Renca", "Quilicura", "Colina", "Lampa", "Tiltil", "Puente Alto", "San José de Maipo", "Pirque", "San Bernardo", "Buin", "Paine", "Calera de Tango", "Melipilla", "María Pinto", "Curacaví", "Alhué", "San Pedro", "Talagante", "Peñaflor", "Isla de Maipo", "El Monte", "Padre Hurtado"
 ].sort();
 
-function loadCityDatalist() {
-  const datalist = document.getElementById("chileCitiesList");
-  if (!datalist) return;
+function loadCitySelects() {
+  const citySelects = [
+    document.getElementById("ownerCity"),
+    document.getElementById("vetCity")
+  ];
 
-  datalist.innerHTML = "";
+  citySelects.forEach(select => {
+    if (!select) return;
 
-  CHILE_CITIES.forEach(city => {
-    const option = document.createElement("option");
-    option.value = city;
-    datalist.appendChild(option);
+    select.innerHTML = `<option value="">Seleccione ciudad / comuna</option>`;
+
+    CHILE_CITIES.forEach(city => {
+      const option = document.createElement("option");
+      option.value = city;
+      option.textContent = city;
+      select.appendChild(option);
+    });
   });
 }
 
-document.addEventListener("DOMContentLoaded", loadCityDatalist);
+document.addEventListener("DOMContentLoaded", loadCitySelects);
