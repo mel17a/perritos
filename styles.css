@@ -52,9 +52,13 @@ body {
 
 body {
   font-family: Arial, sans-serif;
-  background: var(--bg);
   color: var(--text);
   padding: 24px;
+  background-color: var(--bg);
+  background-image: url("fondo.png");
+  background-repeat: repeat;
+  background-size: 150px;
+  background-attachment: fixed;
 }
 
 .container {
@@ -69,8 +73,8 @@ body {
 
 .form-card,
 .card {
-  background: var(--card);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.94);
+  border: 2px solid var(--border);
   border-radius: 24px;
   padding: 28px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
@@ -86,7 +90,7 @@ body {
   margin: 0;
   background: var(--soft);
   color: var(--primary);
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
 }
 
 h1 {
@@ -98,17 +102,17 @@ h1 {
 h2 {
   font-size: 26px;
   color: var(--primary);
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 3px solid var(--accent);
   padding-bottom: 10px;
   margin: 0 0 16px;
 }
 
 .form-section {
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 20px;
   padding: 22px;
   margin-top: 22px;
-  background: var(--soft);
+  background: rgba(255, 234, 246, 0.90);
 }
 
 input,
@@ -116,7 +120,7 @@ select {
   width: 100%;
   padding: 14px 16px;
   margin: 8px 0;
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 14px;
   font-size: 16px;
   background: #fff;
@@ -147,11 +151,11 @@ button {
 }
 
 .vaccine-block {
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 18px;
   padding: 18px;
   margin-top: 14px;
-  background: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.65);
 }
 
 .card {
@@ -193,10 +197,10 @@ button {
 }
 
 .pdf-box {
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 18px;
   padding: 18px;
-  background: var(--soft);
+  background: rgba(255, 234, 246, 0.90);
   overflow-wrap: break-word;
   word-break: break-word;
   min-width: 0;
@@ -204,7 +208,7 @@ button {
 
 .pdf-box h3 {
   color: var(--primary);
-  border-bottom: 2px solid var(--accent);
+  border-bottom: 3px solid var(--accent);
   padding-bottom: 8px;
   margin: 0 0 12px;
   font-size: clamp(15px, 2vw, 18px);
@@ -248,10 +252,10 @@ button {
 }
 
 .vaccine-preview {
-  border: 1px solid var(--border);
+  border: 2px solid var(--border);
   border-radius: 14px;
   padding: 12px;
-  background: rgba(255,255,255,0.55);
+  background: rgba(255,255,255,0.65);
 }
 
 .certificate {
@@ -261,6 +265,32 @@ button {
   object-position: center;
   border-radius: 10px;
   margin-top: 8px;
+}
+
+input[type="date"] {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  display: block;
+  appearance: none;
+  -webkit-appearance: none;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+.form-section,
+.vaccine-block {
+  overflow: hidden;
+}
+
+input[list],
+select {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  appearance: none;
+  -webkit-appearance: none;
 }
 
 @media (max-width: 1100px) {
@@ -280,6 +310,7 @@ button {
 @media (max-width: 600px) {
   body {
     padding: 8px;
+    background-size: 110px;
   }
 
   .form-card,
@@ -294,25 +325,7 @@ button {
   .theme-buttons {
     grid-template-columns: 1fr;
   }
-}
 
-input[type="date"] {
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  display: block;
-  appearance: none;
-  -webkit-appearance: none;
-  font-size: 16px;
-  line-height: 1.2;
-}
-
-.form-section,
-.vaccine-block {
-  overflow: hidden;
-}
-
-@media (max-width: 600px) {
   input,
   select {
     min-width: 0;
@@ -324,14 +337,4 @@ input[type="date"] {
     font-size: 15px;
     padding: 12px;
   }
-}
-
-input[list],
-select {
-  width: 100%;
-  min-width: 0;
-  max-width: 100%;
-  height: auto;
-  appearance: none;
-  -webkit-appearance: none;
 }
