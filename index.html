@@ -24,8 +24,29 @@
           <h2>Datos del propietario</h2>
           <input id="ownerName" placeholder="Nombre propietario" required minlength="3">
           <input id="ownerRut" placeholder="RUT propietario" required pattern="^[0-9]{7,8}-[0-9kK]{1}$" title="Formato válido: 12345678-9">
-          <input id="ownerAddress" placeholder="Dirección" required minlength="5">
-          <input id="ownerCity" placeholder="Ciudad" required minlength="3">
+          <select id="ownerCountry" required>
+          <option value="">Seleccione país</option>
+          <option value="Chile">Chile</option>
+        </select>
+        
+        <select id="ownerCity" required>
+          <option value="">Seleccione ciudad</option>
+          <option value="Santiago">Santiago</option>
+          <option value="Ñuñoa">Ñuñoa</option>
+          <option value="Providencia">Providencia</option>
+          <option value="Las Condes">Las Condes</option>
+          <option value="Maipú">Maipú</option>
+          <option value="Puente Alto">Puente Alto</option>
+          <option value="Valparaíso">Valparaíso</option>
+          <option value="Viña del Mar">Viña del Mar</option>
+          <option value="Concepción">Concepción</option>
+          <option value="La Serena">La Serena</option>
+          <option value="Antofagasta">Antofagasta</option>
+          <option value="Temuco">Temuco</option>
+          <option value="Puerto Montt">Puerto Montt</option>
+        </select>
+        
+        <input id="ownerAddress" placeholder="Dirección" required minlength="5">
           <input id="ownerPhone" placeholder="Teléfono" required pattern="^\+?[0-9]{8,12}$" title="Ingrese solo números, puede incluir +569">
         </div>
 
