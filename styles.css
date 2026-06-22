@@ -111,7 +111,8 @@ h2 {
   background: var(--soft);
 }
 
-input {
+input,
+select {
   width: 100%;
   padding: 14px 16px;
   margin: 8px 0;
@@ -312,7 +313,8 @@ input[type="date"] {
 }
 
 @media (max-width: 600px) {
-  input {
+  input,
+  select {
     min-width: 0;
     max-width: 100%;
     padding: 12px;
