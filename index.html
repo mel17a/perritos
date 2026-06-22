@@ -53,7 +53,11 @@
           <input id="petPhoto" type="file" accept="image/*">
 
           <input id="petName" placeholder="Nombre de mascota" required minlength="2">
-          <input id="petSex" placeholder="Sexo">
+          <select id="petSex" required>
+            <option value="">Seleccione sexo</option>
+            <option value="Hembra">Hembra</option>
+            <option value="Macho">Macho</option>
+          </select>
           <input id="petSpecies" placeholder="Especie">
           <input id="petColor" placeholder="Color">
           <input id="petBreed" placeholder="Raza">
