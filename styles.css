@@ -325,3 +325,13 @@ input[type="date"] {
     padding: 12px;
   }
 }
+
+input[list],
+select {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+  height: auto;
+  appearance: none;
+  -webkit-appearance: none;
+}
