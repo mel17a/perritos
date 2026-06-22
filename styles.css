@@ -3,44 +3,47 @@
 }
 
 :root {
-  --bg: #fff4fb;
+  --bg: #fff4fa;
   --card: #ffffff;
-  --primary: #cb408c;
-  --secondary: #e360a8;
-  --accent: #fdc6e4;
+  --primary: #c15491;
+  --secondary: #da7db2;
+  --accent: #eba8ce;
   --text: #27131f;
-  --border: #f3b8d9;
-  --soft: #ffeaf6;
+  --border: #c15491;
+  --soft: #f7d1e7;
 }
 
 .theme-female {
-  --bg: #fff4fb;
-  --primary: #cb408c;
-  --secondary: #e360a8;
-  --accent: #fdc6e4;
+  --bg: #fff4fa;
+  --card: #ffffff;
+  --primary: #c15491;
+  --secondary: #da7db2;
+  --accent: #eba8ce;
   --text: #27131f;
-  --border: #f3b8d9;
-  --soft: #ffeaf6;
+  --border: #c15491;
+  --soft: #f7d1e7;
 }
 
 .theme-male {
-  --bg: #eef6ff;
-  --primary: #244e7a;
-  --secondary: #6095cc;
-  --accent: #c9e1fb;
+  --bg: #f4f9fd;
+  --card: #ffffff;
+  --primary: #49789a;
+  --secondary: #719dbc;
+  --accent: #a0c2da;
   --text: #102235;
-  --border: #b7d2ef;
-  --soft: #e8f3ff;
+  --border: #49789a;
+  --soft: #cee2f1;
 }
 
 .theme-fashion {
-  --bg: #fff8e8;
-  --primary: #a93c28;
-  --secondary: #0fa579;
-  --accent: #fedb7b;
+  --bg: #fff6e5;
+  --card: #ffffff;
+  --primary: #b38b3b;
+  --secondary: #ddb76b;
+  --accent: #ffe0a2;
   --text: #1e1e1e;
-  --border: #ddd2c4;
-  --soft: #fff3d6;
+  --border: #b38b3b;
+  --soft: #ffecc6;
 }
 
 html,
