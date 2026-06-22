@@ -235,7 +235,7 @@ async function exportPDF() {
   const petImgOriginal = await readImage($("petPhoto"));
   const petImg = petImgOriginal ? await makeCircularImage(petImgOriginal) : "";
 
-  doc.setFillColor("#ffffff");
+  doc.setFillColor(soft);
   doc.rect(0, 0, 297, 210, "F");
 
   doc.setTextColor(primary);
