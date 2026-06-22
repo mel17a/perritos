@@ -46,7 +46,7 @@ function createVaccineBlock() {
     <input class="nextVaccinationDate" type="date">
 
     <label>Cargar certificado de vacunación</label>
-    <input class="certificatePhoto" type="file" accept="image/*" capture="environment">
+    <input class="certificatePhoto" type="file" accept="image/*">
 
     <button type="button" class="remove-vaccine">Eliminar vacuna</button>
   `;
@@ -163,9 +163,11 @@ async function exportPDF() {
   });
 
   const primary = getComputedStyle(document.body).getPropertyValue("--primary").trim() || "#cb408c";
-  const soft = getComputedStyle(document.body).getPropertyValue("--soft").trim() || "#ffeaf6";
-  const border = getComputedStyle(document.body).getPropertyValue("--border").trim() || "#f3b8d9";
-  const text = "#222222";
+  const secondary = getComputedStyle(document.body).getPropertyValue("--secondary").trim() || "#da7db2";
+  const soft = getComputedStyle(document.body).getPropertyValue("--soft").trim() || "#f7d1e7";
+  const border = getComputedStyle(document.body).getPropertyValue("--border").trim() || "#c15491";
+  const bg = getComputedStyle(document.body).getPropertyValue("--bg").trim() || "#fff4fa";
+  const text = getComputedStyle(document.body).getPropertyValue("--text").trim() || "#222222";
 
   function field(label, value, x, y, maxWidth = 50) {
     doc.setTextColor(text);
@@ -181,17 +183,17 @@ async function exportPDF() {
   }
 
   function box(x, y, w, h, title) {
-    doc.setLineWidth(1.2);
+    doc.setLineWidth(1.4);
     doc.setDrawColor(border);
     doc.setFillColor(soft);
     doc.roundedRect(x, y, w, h, 4, 4, "FD");
 
-    doc.setTextColor(primary);
+    doc.setTextColor(secondary);
     doc.setFont("helvetica", "bold");
     doc.setFontSize(11);
     doc.text(title.toUpperCase(), x + 5, y + 9);
 
-    doc.setLineWidth(0.8);
+    doc.setLineWidth(0.9);
     doc.setDrawColor(border);
     doc.line(x + 5, y + 12, x + w - 5, y + 12);
   }
@@ -235,7 +237,7 @@ async function exportPDF() {
   const petImgOriginal = await readImage($("petPhoto"));
   const petImg = petImgOriginal ? await makeCircularImage(petImgOriginal) : "";
 
-  doc.setFillColor(soft);
+  doc.setFillColor(bg);
   doc.rect(0, 0, 297, 210, "F");
 
   doc.setTextColor(primary);
