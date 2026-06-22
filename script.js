@@ -108,7 +108,7 @@ function renderPreview(vaccinesHtml) {
 
       <div class="preview-grid">
         <div class="pdf-box">
-          <h3>Datos del propietario</h3>
+          <h3>Datos del tutor</h3>
           <p><strong>Nombre:</strong> ${val("ownerName")}</p>
           <p><strong>RUT:</strong> ${val("ownerRut")}</p>
           <p><strong>Dirección:</strong> ${val("ownerAddress")}</p>
@@ -245,7 +245,7 @@ async function exportPDF() {
   doc.setFontSize(24);
   doc.text("Carnet digital de mascota", 148.5, 18, { align: "center" });
 
-  box(8, 28, 88, 75, "Datos del propietario");
+  box(8, 28, 88, 75, "Datos del tutor");
   let y = 48;
   y = field("Nombre", val("ownerName"), 14, y);
   y = field("RUT", val("ownerRut"), 14, y);
