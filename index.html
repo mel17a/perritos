@@ -4,8 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Perritos - Carnet Digital</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=9">
 </head>
+
 <body class="theme-female">
 
   <main class="container">
@@ -41,6 +42,7 @@
           <select id="ownerCity" required>
             <option value="">Seleccione ciudad / comuna</option>
           </select>
+
           <input id="ownerAddress" placeholder="Dirección" required minlength="5">
 
           <input id="ownerPhone" placeholder="Teléfono" required pattern="^\+?[0-9]{8,12}$" title="Ingrese solo números, puede incluir +569">
@@ -53,11 +55,13 @@
           <input id="petPhoto" type="file" accept="image/*">
 
           <input id="petName" placeholder="Nombre de mascota" required minlength="2">
+
           <select id="petSex" required>
             <option value="">Seleccione sexo</option>
             <option value="Hembra">Hembra</option>
             <option value="Macho">Macho</option>
           </select>
+
           <input id="petSpecies" placeholder="Especie">
           <input id="petColor" placeholder="Color">
           <input id="petBreed" placeholder="Raza">
@@ -138,11 +142,10 @@
 
       <button type="button" onclick="exportPDF()">Exportar PDF</button>
     </section>
-
   </main>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-  <script src="Chile-cities.js"></script>
-  <script src="script.js"></script>
+  <script src="Chile-cities.js?v=9"></script>
+  <script src="script.js?v=9"></script>
 </body>
 </html>
